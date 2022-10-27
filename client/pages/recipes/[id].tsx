@@ -43,7 +43,7 @@ export default function RecipePage() {
     <div className="ml-8 flex flex-col space-y-5">
       <h1 className="text-4xl font-bold">{recipe?.name}</h1>
       <p className="text-gray-700 text-lg">{recipe?.description}</p>
-      <div className="w-96 h-44 bg-emerald-100 rounded-md grid grid-cols-2 px-5 py-2">
+      <div className="w-96 h-40 bg-emerald-100 rounded-md grid grid-cols-2 px-5 py-2">
         <span>
           <p className="font-bold">Prep Time:</p>
           {recipe?.estPrepTime} mins
@@ -57,6 +57,12 @@ export default function RecipePage() {
           {recipe && recipe.estCookTime + recipe.estPrepTime} mins
         </span>
       </div>
+      <h2 className="text-2xl font-bold">Ingredients:</h2>
+      <ol className="list-decimal ml-4">
+        {recipe?.ingredients.map((ingredient) => (
+          <li>{ingredient}</li>
+        ))}
+      </ol>
     </div>
   );
 }
