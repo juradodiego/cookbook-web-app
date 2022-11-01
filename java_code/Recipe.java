@@ -1,33 +1,5 @@
-class RecipeDAO
-{
-
-    public Recipe getRecipe(int recipe_id)
-    {
-
-        try {
-
-            Recipe r = null;
-
-            // Connect to database here
-            // Get recipe from database
-            // Store recipe -> r
-
-            return r;
-
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e);
-            return null;
-        }
-        
-    }
-
-}
-
-class Recipe
-{
-
-    // Instance Variables for Recipe Object 
+public class Recipe implements Recipe_Inter{
+    // Instance Variables for Recipe Object
     String name;
     String description;
     String[] instructions;
@@ -65,11 +37,12 @@ class Recipe
         return this.difficultyRating;
     }
 
-    public void setQualityRating(Float newQualityRating){
+    public void setQualityRating(float newQualityRating){
         this.qualityRating = newQualityRating;
     }
 
-    public void setDifficultyRating(Float newDifficultyRating){
+    public void setDifficultyRating(float newDifficultyRating){
         this.difficultyRating = newDifficultyRating;
     }
 }
+
