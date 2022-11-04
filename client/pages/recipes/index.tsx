@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import RecipeWidget from "../../components/RecipeWidget";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 const sampleRecipes: RecipeWidgetT[] = [
   {
@@ -23,9 +24,13 @@ interface RecipeWidgetT {
 }
 
 export default function Home() {
+  // recipes from API request (unfiltered)
   const [recipes, setRecipes] = useState<RecipeWidgetT[] | undefined>(
     undefined
   );
+
+  // Search keyword state
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   // initial fetch recipes using search + filter
   useEffect(() => {
@@ -34,6 +39,19 @@ export default function Home() {
 
   return (
     <div>
+      {/* Search Bar */}
+      <div className="flex bg-white rounded-lg h-10 ml-5 mt-5 w-80 focus-within:shadow-lg space-x-2 border border-gray-200">
+        <MagnifyingGlassIcon className="ml-2 my-auto h-5 text-gray-700" />
+        <input
+          className="flex-grow rounded-lg focus:outline-none text-gray-800"
+          type="text"
+          placeholder="Search for recipes"
+          value={searchKeyword}
+          onChange={(e) => {
+            setSearchKeyword(e.target.value);
+          }}
+        />
+      </div>
       {/* Individual recipe widgets */}
       <div className="flex mx-5 mt-2 space-x-5">
         {recipes?.map((recipe) => (

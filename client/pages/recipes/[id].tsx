@@ -41,36 +41,38 @@ export default function RecipePage() {
   }, []);
 
   return (
-    <div className="ml-8 flex flex-col space-y-5">
-      <h1 className="text-4xl font-bold">{recipe?.name}</h1>
-      <p className="text-gray-700 text-lg">{recipe?.description}</p>
-      {recipe?.imageUrl && (
-        <img
-          className="object-scale-down object-left h-80 w-[75%]"
-          src={recipe.imageUrl}
-          alt={`Image of ${recipe.name}`}
-        />
-      )}
-      <div className="w-96 h-40 bg-emerald-100 rounded-md grid grid-cols-2 px-5 py-2">
-        <span>
-          <p className="font-bold">Prep Time:</p>
-          {recipe?.estPrepTime} mins
-        </span>
-        <span>
-          <p className="font-bold">Cook Time:</p>
-          {recipe?.estCookTime} mins
-        </span>
-        <span>
-          <p className="font-bold">Total Time:</p>
-          {recipe && recipe.estCookTime + recipe.estPrepTime} mins
-        </span>
+    <div>
+      <div className="ml-8 flex flex-col space-y-5">
+        <h1 className="text-4xl font-bold">{recipe?.name}</h1>
+        <p className="text-gray-700 text-lg">{recipe?.description}</p>
+        {recipe?.imageUrl && (
+          <img
+            className="object-scale-down object-left h-80 w-[75%]"
+            src={recipe.imageUrl}
+            alt={`Image of ${recipe.name}`}
+          />
+        )}
+        <div className="w-96 h-40 bg-emerald-100 rounded-md grid grid-cols-2 px-5 py-2">
+          <span>
+            <p className="font-bold">Prep Time:</p>
+            {recipe?.estPrepTime} mins
+          </span>
+          <span>
+            <p className="font-bold">Cook Time:</p>
+            {recipe?.estCookTime} mins
+          </span>
+          <span>
+            <p className="font-bold">Total Time:</p>
+            {recipe && recipe.estCookTime + recipe.estPrepTime} mins
+          </span>
+        </div>
+        <h2 className="text-2xl font-bold">Ingredients:</h2>
+        <ol className="list-decimal ml-4">
+          {recipe?.ingredients.map((ingredient) => (
+            <li>{ingredient}</li>
+          ))}
+        </ol>
       </div>
-      <h2 className="text-2xl font-bold">Ingredients:</h2>
-      <ol className="list-decimal ml-4">
-        {recipe?.ingredients.map((ingredient) => (
-          <li>{ingredient}</li>
-        ))}
-      </ol>
     </div>
   );
 }
