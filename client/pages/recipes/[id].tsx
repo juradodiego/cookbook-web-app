@@ -10,6 +10,7 @@ const sampleRecipe: Recipe = {
   ingredients: ["Spaghetti", "Meatballs", "Red sauce", "Parmesan cheese"],
   estPrepTime: 10,
   estCookTime: 20,
+  imageUrl: "https://images.spot.im/v1/production/nj5fh78jludisdu0nyne",
 };
 
 interface Recipe {
@@ -43,6 +44,13 @@ export default function RecipePage() {
     <div className="ml-8 flex flex-col space-y-5">
       <h1 className="text-4xl font-bold">{recipe?.name}</h1>
       <p className="text-gray-700 text-lg">{recipe?.description}</p>
+      {recipe?.imageUrl && (
+        <img
+          className="object-scale-down object-left h-80 w-[75%]"
+          src={recipe.imageUrl}
+          alt={`Image of ${recipe.name}`}
+        />
+      )}
       <div className="w-96 h-40 bg-emerald-100 rounded-md grid grid-cols-2 px-5 py-2">
         <span>
           <p className="font-bold">Prep Time:</p>

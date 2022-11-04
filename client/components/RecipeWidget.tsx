@@ -13,7 +13,11 @@ export default function RecipeWidget({ id, name, imageUrl }: componentProps) {
         <h1 className="border-emerald-600 border-b-2 text-center text-gray-800 group-hover:underline">
           {name}
         </h1>
-        <img className="m-1 rounded-md flex-grow" src={imageUrl} alt="" />
+        <img
+          className="m-1 rounded-md object-cover w-[11.5rem] h-[5.849rem]"
+          src={imageUrl}
+          alt=""
+        />
       </div>
     </Link>
   );

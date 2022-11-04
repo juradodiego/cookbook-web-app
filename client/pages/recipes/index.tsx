@@ -8,6 +8,12 @@ const sampleRecipes: RecipeWidgetT[] = [
       "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
     id: 1,
   },
+  {
+    name: "Ramen Noodles",
+    imageUrl:
+      "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg",
+    id: 2,
+  },
 ];
 
 interface RecipeWidgetT {
@@ -29,7 +35,7 @@ export default function Home() {
   return (
     <div>
       {/* Individual recipe widgets */}
-      <div className="flex mx-5 mt-2">
+      <div className="flex mx-5 mt-2 space-x-5">
         {recipes?.map((recipe) => (
           <RecipeWidget
             name={recipe.name}
