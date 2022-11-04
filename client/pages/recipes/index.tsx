@@ -32,6 +32,13 @@ export default function Home() {
   // Search keyword state
   const [searchKeyword, setSearchKeyword] = useState("");
 
+  // Handles search keyword and various filters that a user inputs
+  function searchAndFilter(items: RecipeWidgetT[]): RecipeWidgetT[] {
+    return items.filter(
+      (item) => item.name.toLowerCase().search(searchKeyword.toLowerCase()) > -1
+    );
+  }
+
   // initial fetch recipes using search + filter
   useEffect(() => {
     setRecipes(sampleRecipes);
@@ -54,13 +61,14 @@ export default function Home() {
       </div>
       {/* Individual recipe widgets */}
       <div className="flex mx-5 mt-2 space-x-5">
-        {recipes?.map((recipe) => (
-          <RecipeWidget
-            name={recipe.name}
-            imageUrl={recipe.imageUrl}
-            id={recipe.id}
-          />
-        ))}
+        {recipes &&
+          searchAndFilter(recipes).map((recipe) => (
+            <RecipeWidget
+              name={recipe.name}
+              imageUrl={recipe.imageUrl}
+              id={recipe.id}
+            />
+          ))}
       </div>
     </div>
   );
