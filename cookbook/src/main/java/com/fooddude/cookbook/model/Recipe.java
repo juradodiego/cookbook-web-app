@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Map;
+import java.util.HashMap;
 
 @Entity
 public class Recipe {
@@ -14,7 +14,7 @@ public class Recipe {
     private String name;
     private String description;
     private String[] instructions;
-    private Map<String, String> ingredients;
+    private HashMap<String, String> ingredients;
     private String[] appliances;
     private float cookTime;
     private float difficultyRating;
@@ -58,11 +58,11 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public Map<String, String> getIngredients() {
+    public HashMap<String, String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Map<String, String> ingredients) {
+    public void setIngredients(HashMap<String, String> ingredients) {
         this.ingredients = ingredients;
     }
 
