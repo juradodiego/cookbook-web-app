@@ -1,6 +1,10 @@
 package com.fooddude.cookbook.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Map;
 
 @Entity
 public class Recipe {
@@ -10,16 +14,13 @@ public class Recipe {
     private String name;
     private String description;
     private String[] instructions;
+    private Map<String, String> ingredients;
     private String[] appliances;
     private float cookTime;
     private float difficultyRating;
     private float qualityRating;
-    @ManyToOne
-    @JoinColumn(name = "cuisine_id")
-    private Cuisine cuisine;
-    @ManyToOne
-    @JoinColumn(name = "flavor_id")
-    private Flavor flavor;
+    private String cuisine;
+    private String flavor;
     private String[] diets;
 
     public Recipe() {
@@ -57,6 +58,14 @@ public class Recipe {
         this.instructions = instructions;
     }
 
+    public Map<String, String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Map<String, String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public String[] getAppliances() {
         return appliances;
     }
@@ -89,20 +98,20 @@ public class Recipe {
         this.qualityRating = qualityRating;
     }
 
-    public Flavor getFlavor() {
-        return flavor;
-    }
-
-    public void setFlavor(Flavor flavor) {
-        this.flavor = flavor;
-    }
-
-    public Cuisine getCuisine() {
+    public String getCuisine() {
         return cuisine;
     }
 
-    public void setCuisine(Cuisine cuisine) {
+    public void setCuisine(String cuisine) {
         this.cuisine = cuisine;
+    }
+
+    public String getFlavor() {
+        return flavor;
+    }
+
+    public void setFlavor(String flavor) {
+        this.flavor = flavor;
     }
 
     public String[] getDiets() {
