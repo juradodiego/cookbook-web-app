@@ -10,4 +10,5 @@ public interface RecipeService {
     public List<Recipe> getAllRecipes();
     public List<Recipe> getFilteredRecipes(Filter filter);
 
+
 }
