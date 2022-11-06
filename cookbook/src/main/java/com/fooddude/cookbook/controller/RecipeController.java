@@ -1,5 +1,6 @@
 package com.fooddude.cookbook.controller;
 
+import com.fooddude.cookbook.model.Filter;
 import com.fooddude.cookbook.model.Recipe;
 import com.fooddude.cookbook.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,10 @@ public class RecipeController {
     @GetMapping("/getAll")
     public List<Recipe> getAllRecipes(){
         return recipeService.getAllRecipes();
+    }
+
+    @GetMapping("/getFiltered")
+    public List<Recipe> getFilteredRecipes(Filter filter){
+        return recipeService.getFilteredRecipes(filter);
     }
 }
