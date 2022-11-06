@@ -1,3 +1,5 @@
+package cookbook.cookbook;
+
 public class Recipe implements Recipe_Inter{
     // Instance Variables for Recipe Object
     String name;

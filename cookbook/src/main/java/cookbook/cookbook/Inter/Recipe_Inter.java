@@ -1,3 +1,5 @@
+package cookbook.cookbook;
+
 public interface Recipe_Inter {
 
     public float getQualityRating();
