@@ -28,7 +28,7 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Override
     public List<Recipe> getFilteredRecipes(Filter filter) {
-        return recipeRepository.filteredSearch(filter);
+        return recipeRepository.filteredSearch(filter, getAllRecipes());
     }
 
 

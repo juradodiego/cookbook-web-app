@@ -26,6 +26,20 @@ public class Recipe {
     public Recipe() {
     }
 
+    public Recipe(String name, String description, String[] instructions, HashMap<String, String> ingredients, String[] appliances, float cookTime, float difficultyRating, float qualityRating, String cuisine, String flavor, String[] diets) {
+        this.name = name;
+        this.description = description;
+        this.instructions = instructions;
+        this.ingredients = ingredients;
+        this.appliances = appliances;
+        this.cookTime = cookTime;
+        this.difficultyRating = difficultyRating;
+        this.qualityRating = qualityRating;
+        this.cuisine = cuisine;
+        this.flavor = flavor;
+        this.diets = diets;
+    }
+
     public int getId() {
         return id;
     }
