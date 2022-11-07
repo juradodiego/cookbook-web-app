@@ -15,9 +15,9 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     private EntityManager entityManager;
 
     @Override
-    public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes) {
+    public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes)
+    {
         List<Recipe> filteredRecipes = new ArrayList<Recipe>();
-        // TODO Implement Filtered Search
 
         for(Recipe recipe : allRecipes)
         {
@@ -46,14 +46,15 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
             filteredRecipes.add(recipe);
         }
 
-        return allRecipes;
+        return filteredRecipes;
     }
 
     // Method to check ingredients
     private boolean checkIngredients(Filter f, Recipe r)
     {
-        // TODO
-        return false;
+        String[] recipe_ingredients = (String[]) r.getIngredients().keySet().toArray();
+
+        return isS2SubsetOfS1(f.getIngredients(), recipe_ingredients);
     }
 
     //Method to check appliances
@@ -92,7 +93,8 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     }
 
     // Utility Methods
-    private static boolean isS2SubsetOfS1(String[] S1, String[] S2) {
+    private static boolean isS2SubsetOfS1(String[] S1, String[] S2)
+    {
         boolean output = true;
             for(String s2_item : S2){
                 boolean hit_app = false;
