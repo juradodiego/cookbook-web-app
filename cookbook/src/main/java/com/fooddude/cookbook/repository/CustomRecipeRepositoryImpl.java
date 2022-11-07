@@ -2,6 +2,7 @@ package com.fooddude.cookbook.repository;
 
 import com.fooddude.cookbook.model.Filter;
 import com.fooddude.cookbook.model.Recipe;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,9 +16,13 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     private EntityManager entityManager;
 
     @Override
-    public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes)
+    public List<Recipe> filteredSearch(Filter filter, @NotNull List<Recipe> allRecipes)
     {
         List<Recipe> filteredRecipes = new ArrayList<Recipe>();
+
+        // TODO implement if filter has property x, then check recipe for property x
+        // i.e., if the filter has no ingredients listed, then don't check for ingredients
+        // and if the filter has ingredients listed, then check for the ingredients
 
         for(Recipe recipe : allRecipes)
         {
