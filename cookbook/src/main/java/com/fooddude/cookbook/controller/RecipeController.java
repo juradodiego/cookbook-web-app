@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+// Posts / Gets from URL = "localhost:8080/recipe/..."
+
 @RestController
 @RequestMapping("/recipe")
 public class RecipeController {
@@ -30,6 +33,7 @@ public class RecipeController {
         return recipeService.getFilteredRecipes(filter);
     }
 
+    // TODO fix delete method -> delete does not delete
     @PostMapping("/delete")
     public String delete(@RequestBody Recipe recipe){
         recipeService.deleteRecipe(recipe);
