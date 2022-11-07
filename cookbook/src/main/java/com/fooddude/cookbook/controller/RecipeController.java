@@ -29,4 +29,10 @@ public class RecipeController {
     public List<Recipe> getFilteredRecipes(Filter filter){
         return recipeService.getFilteredRecipes(filter);
     }
+
+    @PostMapping("/delete")
+    public String delete(@RequestBody Recipe recipe){
+        recipeService.deleteRecipe(recipe);
+        return "A recipe has been deleted";
+    }
 }

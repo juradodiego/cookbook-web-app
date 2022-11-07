@@ -29,5 +29,10 @@ public class RecipeServiceImpl implements RecipeService{
         return recipeRepository.filteredSearch(filter, getAllRecipes());
     }
 
+    @Override
+    public void deleteRecipe(Recipe recipe) {
+        recipeRepository.delete(recipe);
+    }
+
 
 }
