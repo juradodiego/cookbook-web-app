@@ -2,8 +2,6 @@ package com.fooddude.cookbook.service;
 
 import com.fooddude.cookbook.model.Filter;
 import com.fooddude.cookbook.model.Recipe;
-import com.fooddude.cookbook.repository.CustomRecipeRepository;
-import com.fooddude.cookbook.repository.CustomRecipeRepositoryImpl;
 import com.fooddude.cookbook.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
