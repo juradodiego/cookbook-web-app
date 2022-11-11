@@ -12,9 +12,6 @@ import java.util.List;
 
 public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Override
     public List<Recipe> filteredSearch(Filter filter, @NotNull List<Recipe> allRecipes)
     {
