@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RecipeWidget from "../../components/RecipeWidget";
 import NavBar from "../../components/NavBar";
 import RecipeFilter from "../../components/RecipeFilter";
+import Head from "next/head";
 
 const sampleRecipes: RecipeWidgetT[] = [
   {
@@ -37,6 +38,9 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>FoodDude - Recipes</title>
+      </Head>
       <NavBar />
       {/* Search Bar */}
       <div className="flex mt-5 ml-5">

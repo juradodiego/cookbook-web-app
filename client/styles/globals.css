@@ -5,3 +5,7 @@
 body {
   @apply bg-sky-50;
 }
+
+svg.star-svg {
+  display: inline;
+}
