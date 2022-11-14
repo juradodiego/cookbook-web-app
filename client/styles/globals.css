@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-emerald-50;
+  @apply bg-sky-50;
 }

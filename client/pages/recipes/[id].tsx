@@ -54,7 +54,7 @@ export default function RecipePage() {
             alt={`Image of ${recipe.name}`}
           />
         )}
-        <div className="w-96 h-40 bg-emerald-100 rounded-md grid grid-cols-2 px-5 py-2">
+        <div className="w-96 h-40 bg-white rounded-md grid grid-cols-2 px-5 py-2 border border-gray-200">
           <span>
             <p className="font-bold">Prep Time:</p>
             {recipe?.estPrepTime} mins
