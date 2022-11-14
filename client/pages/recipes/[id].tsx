@@ -8,9 +8,11 @@ const sampleRecipe: Recipe = {
   qualityRating: 3,
   description: "Classic Italian Spaghetti & Meatballs. Restauraunt style!",
   ingredients: ["Spaghetti", "Meatballs", "Red sauce", "Parmesan cheese"],
+  appliances: ["Stovetop"],
   estPrepTime: 10,
   estCookTime: 20,
   imageUrl: "https://images.spot.im/v1/production/nj5fh78jludisdu0nyne",
+  instructions: ["Cook spaghetti.", "Cook meatballs.", "Combine", "Serve"],
 };
 
 interface Recipe {
@@ -69,7 +71,19 @@ export default function RecipePage() {
         <h2 className="text-2xl font-bold">Ingredients:</h2>
         <ol className="list-decimal ml-4">
           {recipe?.ingredients.map((ingredient) => (
-            <li>{ingredient}</li>
+            <li key={ingredient}>{ingredient}</li>
+          ))}
+        </ol>
+        <h2 className="text-2xl font-bold">Appliances:</h2>
+        <ol className="list-decimal ml-4">
+          {recipe?.appliances.map((appliance) => (
+            <li key={appliance}>{appliance}</li>
+          ))}
+        </ol>
+        <h2 className="text-2xl font-bold">Instructions:</h2>
+        <ol className="list-decimal ml-4">
+          {recipe?.instructions.map((instruction) => (
+            <li key={instruction}>{instruction}</li>
           ))}
         </ol>
       </div>
