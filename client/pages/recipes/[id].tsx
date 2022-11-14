@@ -61,7 +61,7 @@ export default function RecipePage() {
           </h1>
           <div className="flex mx-auto space-x-10">
             <div className="flex flex-col">
-              <h2>Quality Rating</h2>
+              <h2 className="select-none">Quality Rating</h2>
               <Rating
                 readonly={true}
                 initialValue={recipe?.qualityRating}
@@ -70,7 +70,7 @@ export default function RecipePage() {
               />
             </div>
             <div className="flex flex-col">
-              <h2>Difficulty Rating</h2>
+              <h2 className="select-none">Difficulty Rating</h2>
               <Rating
                 readonly={true}
                 initialValue={recipe?.difficultyRating}
