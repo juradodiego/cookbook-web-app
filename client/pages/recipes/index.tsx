@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RecipeWidget from "../../components/RecipeWidget";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import NavBar from "../../components/NavBar";
 
 const sampleRecipes: RecipeWidgetT[] = [
   {
@@ -46,6 +47,7 @@ export default function Home() {
 
   return (
     <div>
+      <NavBar />
       {/* Search Bar */}
       <div className="flex bg-white rounded-lg h-10 ml-5 mt-5 w-80 focus-within:shadow-lg space-x-2 border border-gray-200">
         <MagnifyingGlassIcon className="ml-2 my-auto h-5 text-gray-700" />
