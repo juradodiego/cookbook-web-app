@@ -8,7 +8,7 @@ export default function NavBar() {
       </div>
 
       {/* Nav items */}
-      <div className="flex space-x-5 ml-auto mx-auto my-auto">
+      <div className="flex space-x-5 ml-auto mx-auto my-auto select-none">
         <span>Home</span>
         <span>Recipes</span>
       </div>

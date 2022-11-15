@@ -47,11 +47,12 @@ export default function Home() {
         <RecipeFilter />
         {/* Individual recipe widgets */}
         <div className="flex mx-5 mt-2 space-x-5">
-          {recipes?.map((recipe) => (
+          {recipes?.map((recipe, index) => (
             <RecipeWidget
               name={recipe.name}
               imageUrl={recipe.imageUrl}
               id={recipe.id}
+              key={index}
             />
           ))}
         </div>

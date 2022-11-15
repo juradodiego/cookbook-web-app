@@ -129,7 +129,7 @@ export default function RecipePage() {
           <Carousel>
             {recipe?.instructions.map((instruction, index) => (
               <CarouselItem key={index}>
-                <div className="flex flex-col w-full h-full select-none">
+                <div className="flex flex-col w-full select-none">
                   <h1 className="text-xl font-semibold mx-auto">
                     Instructions:
                   </h1>

@@ -22,9 +22,8 @@ export default function Carousel({ children }: any) {
       />
       <div className="overflow-hidden">
         <div
-          className={`whitespace-nowrap w-[30rem] transform duration-300 translate-x-[-${
-            activeIndex * 100
-          }%]`}
+          className="whitespace-nowrap w-[30rem] transition duration-300"
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
         >
           {children}
         </div>
