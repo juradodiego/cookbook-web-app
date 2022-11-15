@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import RecipeWidget from "../../components/RecipeWidget";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import NavBar from "../../components/NavBar";
+import RecipeFilter from "../../components/RecipeFilter";
+import Head from "next/head";
 
 const sampleRecipes: RecipeWidgetT[] = [
   {
@@ -29,16 +31,6 @@ export default function Home() {
     undefined
   );
 
-  // Search keyword state
-  const [searchKeyword, setSearchKeyword] = useState("");
-
-  // Handles search keyword and various filters that a user inputs
-  function searchAndFilter(items: RecipeWidgetT[]): RecipeWidgetT[] {
-    return items.filter(
-      (item) => item.name.toLowerCase().search(searchKeyword.toLowerCase()) > -1
-    );
-  }
-
   // initial fetch recipes using search + filter
   useEffect(() => {
     setRecipes(sampleRecipes);
@@ -46,29 +38,24 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>FoodDude - Recipes</title>
+      </Head>
+      <NavBar />
       {/* Search Bar */}
-      <div className="flex bg-white rounded-lg h-10 ml-5 mt-5 w-80 focus-within:shadow-lg space-x-2 border border-gray-200">
-        <MagnifyingGlassIcon className="ml-2 my-auto h-5 text-gray-700" />
-        <input
-          className="flex-grow rounded-lg focus:outline-none text-gray-800"
-          type="text"
-          placeholder="Search for recipes"
-          value={searchKeyword}
-          onChange={(e) => {
-            setSearchKeyword(e.target.value);
-          }}
-        />
-      </div>
-      {/* Individual recipe widgets */}
-      <div className="flex mx-5 mt-2 space-x-5">
-        {recipes &&
-          searchAndFilter(recipes).map((recipe) => (
+      <div className="flex mt-5 ml-5">
+        <RecipeFilter />
+        {/* Individual recipe widgets */}
+        <div className="flex mx-5 mt-2 space-x-5">
+          {recipes?.map((recipe, index) => (
             <RecipeWidget
               name={recipe.name}
               imageUrl={recipe.imageUrl}
               id={recipe.id}
+              key={index}
             />
           ))}
+        </div>
       </div>
     </div>
   );
