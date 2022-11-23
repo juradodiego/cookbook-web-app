@@ -91,7 +91,7 @@ class CustomRecipeRepositoryImplTest extends TestCase {
 	 */
 	@Test
 	void testCheckApplianceNotEqual() {
-		String[] newAppliances = new String[] {"blast furnace", "Giant electric mixing bowl"}
+		String[] newAppliances = new String[] {"blast furnace", "Giant electric mixing bowl"};
 		filter.setAppliances(newAppliances);
 		
 		assertFalse("Checking appliances when they are not equal", checkAppliance(filter, recipe));
@@ -232,7 +232,7 @@ class CustomRecipeRepositoryImplTest extends TestCase {
 	@Test
 	void testArraysNotSubsets() {
 		String[] forTest = new String[] {"Giraffe"};
-		String[] alsoForTest = newString[] {"Alligator"};
+		String[] alsoForTest = new String[] {"Alligator"};
 		
 		assertFalse("Testing subset of two totally different arrays", S2SubsetOfS1(fortTest, alsoForTest));
 	}
