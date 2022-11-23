@@ -59,8 +59,8 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     // Method to check ingredients
     private boolean checkIngredients(Filter f, Recipe r)
     {
-        String[] recipe_ingredients = (String[]) r.getIngredients().keySet().toArray();
-
+    	String[] recipe_ingredients = r.getIngredients().keySet();
+    	
         return isS2SubsetOfS1(f.getIngredients(), recipe_ingredients);
     }
 
