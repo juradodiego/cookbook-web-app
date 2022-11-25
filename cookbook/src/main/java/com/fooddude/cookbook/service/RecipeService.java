@@ -9,6 +9,6 @@ public interface RecipeService {
     public Recipe saveRecipe(Recipe recipe);
     public List<Recipe> getAllRecipes();
     public List<Recipe> getFilteredRecipes(Filter filter);
-
+    public void deleteRecipe(Recipe recipe);
 
 }

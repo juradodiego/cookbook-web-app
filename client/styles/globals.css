@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-sky-50;
+}
+
+svg.star-svg {
+  display: inline;
+}
+
+.rating-dropdown-item {
+  @apply cursor-pointer border-b-2 border-white hover:border-blue-400;
+}
