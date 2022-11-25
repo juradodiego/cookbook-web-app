@@ -11,13 +11,10 @@ import javax.persistence.PersistenceContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
 
    // @Override
     public List<Recipe> filteredSearch(Filter filter, @NotNull List<Recipe> allRecipes)
@@ -59,8 +56,20 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     // Method to check ingredients
     private boolean checkIngredients(Filter f, Recipe r)
     {
-    	String[] recipe_ingredients = r.getIngredients().keySet();
-    	
+        Set<String> ingredients_set = r.getIngredients().keySet();
+
+        int size = ingredients_set.size();
+
+        String[] recipe_ingredients = new String[size];
+
+        int index = -1;
+
+        for(String s : ingredients_set)
+        {
+            index++;
+            recipe_ingredients[index] = s;
+        }
+
         return isS2SubsetOfS1(f.getIngredients(), recipe_ingredients);
     }
 

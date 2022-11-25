@@ -1,20 +1,14 @@
 package com.fooddude.cookbook.repository;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.fooddude.cookbook.model.Filter;
 import com.fooddude.cookbook.model.Recipe;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-
-
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,21 +68,12 @@ class CustomRecipeRespositoryImplTest  extends CustomRecipeRepositoryImpl {
 	 */
 	@Test
 	void testFilteredSearch() {
-		
-		
-		List<Recipe> observed = new ArrayList<Recipe>();
-		
-		allRecipes.add(recipe);
-			
-		
-		observed = filteredSearch(filter, allRecipes);
-		
-		
 		int expected = 1;
-		
+		allRecipes.add(recipe);
+		List<Recipe> actual = filteredSearch(filter, allRecipes);
 		String msg = "Adding one recipe to filteredRecipes";
-		
-		assertEquals(msg, expected, observed.size() );
+
+		assertEquals(expected, actual, msg);
 	}
 
 
