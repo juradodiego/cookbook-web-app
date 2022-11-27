@@ -7,18 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-
 public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
-
     @Override
     public List<Recipe> findByIds(List<Integer> ids) {
-        //TODO Implement findByIds()
+        //TODO implement findByIds method
+        //TODO add test method for findByIds method
         return null;
     }
-
     @Override
-    public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes)
-    {
+    public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes) {
         List<Recipe> filteredRecipes = new ArrayList<>();
 
         // TODO implement if filter has property x, then check recipe for property x
@@ -52,65 +49,38 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
         }
         return filteredRecipes;
     }
-
-    // Method to check ingredients
-    private boolean checkIngredients(Filter f, Recipe r)
-    {
+    private boolean checkIngredients(Filter f, Recipe r) {
         Set<String> ingredients_set = r.getIngredients().keySet();
-
-        int size = ingredients_set.size();
-
-        String[] recipe_ingredients = new String[size];
-
+        String[] recipe_ingredients = new String[ingredients_set.size()];
         int index = -1;
-
-        for(String s : ingredients_set)
-        {
+        for(String s : ingredients_set) {
             index++;
             recipe_ingredients[index] = s;
         }
-
         return isS2SubsetOfS1(f.getIngredients(), recipe_ingredients);
     }
-
-    //Method to check appliances
     private boolean checkAppliances(Filter f, Recipe r)
     {
         return isS2SubsetOfS1(f.getAppliances(), r.getAppliances());
     }
-
-    //Method to check difficulty
-    private boolean checkDifficultyRating(Filter f, Recipe r)
-    {
+    private boolean checkDifficultyRating(Filter f, Recipe r) {
         return r.getDifficultyRating() <= f.getDifficultyRating();
     }
-
-    //Method to check quality
     private boolean checkQualityRating(Filter f, Recipe r){
         return r.getQualityRating() >= f.getQualityRating();
     }
-
-    //Method to check cuisine
-    private boolean checkCuisine(Filter f, Recipe r)
-    {
+    private boolean checkCuisine(Filter f, Recipe r) {
         return f.getCuisine().equals(r.getCuisine());
     }
-
-    //Method to check flavor
     private boolean checkFlavor(Filter f, Recipe r)
     {
         return f.getFlavor().equals(r.getFlavor());
     }
-
-    //Method to check diets
     private boolean checkDiets(Filter f, Recipe r)
     {
         return isS2SubsetOfS1(r.getDiets(), f.getDiets());
     }
-
-    // Utility Methods
-    private static boolean isS2SubsetOfS1(String[] S1, String[] S2)
-    {
+    private static boolean isS2SubsetOfS1(String[] S1, String[] S2) {
         boolean output = true;
             for(String s2_item : S2){
                 boolean hit_app = false;
@@ -127,4 +97,5 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
             }
             return output;
     }
-}
+
+} // end of CustomRecipeRepositoryImpl class

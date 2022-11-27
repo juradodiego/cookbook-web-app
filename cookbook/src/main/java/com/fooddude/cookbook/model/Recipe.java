@@ -135,4 +135,5 @@ public class Recipe {
     public void setDiets(String[] diets) {
         this.diets = diets;
     }
-}
+
+} // end of Recipe class

@@ -9,4 +9,5 @@ import java.util.List;
 public interface CustomRecipeRepository {
     List<Recipe> findByIds(List<Integer> ids);
     List<Recipe> filteredSearch (Filter filter, List<Recipe> allRecipes);
-}
+
+} // end of CustomRecipeRepository interface

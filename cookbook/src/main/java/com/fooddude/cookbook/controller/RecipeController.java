@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 // Posts / Gets from URL = "localhost:8080/recipe/..."
 
+// TODO add test class for RecipeController class
 @RestController
 @RequestMapping("/recipe")
 public class RecipeController {
@@ -40,4 +40,5 @@ public class RecipeController {
         recipeService.deleteRecipe(recipe);
         return "A recipe has been deleted";
     }
-}
+
+} // end of RecipeController class

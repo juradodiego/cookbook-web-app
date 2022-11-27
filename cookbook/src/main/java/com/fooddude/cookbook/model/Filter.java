@@ -69,4 +69,5 @@ public class Filter {
     public void setDiets(String[] diets) {
         this.diets = diets;
     }
-}
+
+} // end of Filter class

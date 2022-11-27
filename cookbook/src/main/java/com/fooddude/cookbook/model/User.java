@@ -82,4 +82,5 @@ public class User {
     public void addSavedRecipeId(Integer recipeId){
         this.savedRecipeIds.add(recipeId);
     }
-}
+
+} // end of User class

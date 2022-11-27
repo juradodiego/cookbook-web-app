@@ -12,4 +12,4 @@ public interface RecipeService {
     public Recipe addRecipe(Recipe recipe);
     public void deleteRecipe(Recipe recipe);
 
-}
+} // end of RecipeService interface

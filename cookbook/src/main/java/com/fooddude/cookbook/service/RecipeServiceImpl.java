@@ -12,7 +12,6 @@ import java.util.List;
 public class RecipeServiceImpl implements RecipeService{
     @Autowired
     private RecipeRepository recipeRepository;
-
     @Override
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
@@ -34,4 +33,4 @@ public class RecipeServiceImpl implements RecipeService{
         recipeRepository.delete(recipe);
     }
 
-}
+} // end of RecipeServiceImpl class
