@@ -15,17 +15,17 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/get")
-    public User get(@RequestBody String username, String password){
+    public User getUser(@RequestBody String username, String password){
         return userService.getUser(username, password);
         // TODO add exception handling & throwing
     }
     @PostMapping("/create")
-    public String create(@RequestBody User user){
+    public String createUser(@RequestBody User user){
         userService.createUser(user);
         return "New user is created";
     }
     @PostMapping("/update")
-    public String update(@RequestBody User user){
+    public String updateUser(@RequestBody User user){
         userService.updateUser(user);
         return "A user has been updated";
     }

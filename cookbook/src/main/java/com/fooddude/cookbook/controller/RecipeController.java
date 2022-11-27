@@ -30,12 +30,12 @@ public class RecipeController {
         return recipeService.getRecipesByIds(ids);
     }
     @PostMapping("/add")
-    public String add(@RequestBody Recipe recipe){
+    public String addRecipe(@RequestBody Recipe recipe){
         recipeService.addRecipe(recipe);
         return "New recipe is added";
     }
     @PostMapping("/delete")
-    public String delete(@RequestBody Recipe recipe){
+    public String deleteRecipe(@RequestBody Recipe recipe){
         // TODO fix delete method -> delete does not delete
         recipeService.deleteRecipe(recipe);
         return "A recipe has been deleted";
