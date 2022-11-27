@@ -5,17 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Filter {
-    private String[] ingredients;
-    private String[] appliances;
-    private float difficultyRating;
-    private float qualityRating;
+    private List<String> ingredients;
+    private List<String> appliances;
+    private double difficultyRating;
+    private double qualityRating;
     private String cuisine;
     private String flavor;
-    private String[] diets;
+    private List<String> diets;
 
 } // end of Filter class
