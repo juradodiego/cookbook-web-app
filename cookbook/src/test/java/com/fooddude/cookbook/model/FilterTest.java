@@ -102,30 +102,86 @@ class FilterTest {
     }
 
     @Test
-    void setIngredients() {
+    void setIngredients() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter Method for ingredients";
+        final String[] arr = {"Eggs", "Green Peppers", "Tomatoes"};
+        final String expected = new ArrayList<String>(List.of(arr)).toString();
+        final Filter filter = new Filter();
+        List<String> list = new ArrayList<String>(List.of(arr));
+        filter.setIngredients(list);
+        final Field field = filter.getClass().getDeclaredField("ingredients");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(filter).toString(), msg);
     }
 
     @Test
-    void setAppliances() {
+    void setAppliances() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter Method for ingredients";
+        final String[] arr = {"Microwave", "Oven", "Toaster"};
+        final String expected = new ArrayList<String>(List.of(arr)).toString();
+        final Filter filter = new Filter();
+        List<String> list = new ArrayList<String>(List.of(arr));
+        filter.setAppliances(list);
+        final Field field = filter.getClass().getDeclaredField("appliances");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(filter).toString(), msg);
     }
 
     @Test
-    void setDifficultyRating() {
+    void setDifficultyRating() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter Method for difficultyRating";
+        final double expected = 3.7;
+        final Filter filter = new Filter();
+        filter.setDifficultyRating(3.7);
+        final Field field = filter.getClass().getDeclaredField("difficultyRating");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(filter), msg);
+
     }
 
     @Test
-    void setQualityRating() {
+    void setQualityRating() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter Method for qualityRating";
+        final double expected = 4.7;
+        final Filter filter = new Filter();
+        filter.setQualityRating(4.7);
+        final Field field = filter.getClass().getDeclaredField("qualityRating");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(filter), msg);
     }
 
     @Test
-    void setCuisine() {
+    void setCuisine() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter Method for cuisine";
+        final String expected = "Chinese";
+        final Filter filter = new Filter();
+        filter.setCuisine("Chinese");
+        final Field field = filter.getClass().getDeclaredField("cuisine");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(filter), msg);
     }
 
     @Test
-    void setFlavor() {
+    void setFlavor() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter Method for flavor";
+        final String expected = "Savory";
+        final Filter filter = new Filter();
+        filter.setFlavor("Savory");
+        final Field field = filter.getClass().getDeclaredField("flavor");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(filter), msg);
     }
 
     @Test
-    void setDiets() {
+    void setDiets() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter Method for diets";
+        final String[] arr = {"Kosher", "Vegetarian", "Halal"};
+        final String expected = new ArrayList<String>(List.of(arr)).toString();
+        final Filter filter = new Filter();
+        List<String> list = new ArrayList<String>(List.of(arr));
+        filter.setDiets(list);
+        final Field field = filter.getClass().getDeclaredField("diets");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(filter).toString(), msg);
     }
 }

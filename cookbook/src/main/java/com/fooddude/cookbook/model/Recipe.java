@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,17 +13,18 @@ import java.util.HashMap;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Integer id;
     private String name;
     private String description;
-    private String[] instructions;
+    private List<String> instructions;
     private HashMap<String, String> ingredients;
-    private String[] appliances;
-    private float cookTime;
-    private float difficultyRating;
-    private float qualityRating;
+    private List<String> appliances;
+    private double cookTime;
+    private double difficultyRating;
+    private double qualityRating;
     private String cuisine;
     private String flavor;
-    private String[] diets;
+    private List<String> diets;
 
 } // end of Recipe class
