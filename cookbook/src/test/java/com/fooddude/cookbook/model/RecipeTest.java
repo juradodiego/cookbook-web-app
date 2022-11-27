@@ -168,46 +168,132 @@ class RecipeTest {
     }
 
     @Test
-    void setName() {
+    void setName() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for name";
+        final String expected = "Omelette";
+        final Recipe recipe = new Recipe();
+        recipe.setName("Omelette");
+        final Field field = recipe.getClass().getDeclaredField("name");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe), msg);
     }
 
     @Test
-    void setDescription() {
+    void setDescription() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for description";
+        final String expected = "A wonderful dish of French origin";
+        final Recipe recipe = new Recipe();
+        recipe.setDescription("A wonderful dish of French origin");
+        final Field field = recipe.getClass().getDeclaredField("description");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe), msg);
     }
 
     @Test
-    void setInstructions() {
+    void setInstructions() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for instructions";
+        final String[] arr = {"1. Crack a few eggs", "2. Scramble the eggs", "3. Pour eggs in pan over flame"};
+        final String expected = new ArrayList<String>(List.of(arr)).toString();
+        final Recipe recipe = new Recipe();
+        recipe.setInstructions(new ArrayList<String>(List.of(arr)));
+        final Field field = recipe.getClass().getDeclaredField("instructions");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe).toString(),msg);
     }
 
     @Test
-    void setIngredients() {
+    void setIngredients() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for ingredients";
+        final String[] i_arr = {"Eggs", "Green Peppers", "Tomatoes"};
+        final String[] a_arr = {"2", "1", "1"};
+        final HashMap<String, String> expected_map = new HashMap<String, String>();
+        for (int i=0; i< i_arr.length; i++) expected_map.put(i_arr[i],a_arr[i]);
+        String expected = expected_map.toString();
+        final Recipe recipe = new Recipe();
+        final HashMap<String, String> map = new HashMap<String, String>();
+        for (int i=0; i< i_arr.length; i++) map.put(i_arr[i],a_arr[i]);
+        recipe.setIngredients(map);
+        final Field field = recipe.getClass().getDeclaredField("ingredients");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe).toString(),msg);
     }
 
     @Test
-    void setAppliances() {
+    void setAppliances() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for instructions";
+        final String[] arr = {"Microwave", "Oven", "Toaster"};
+        final String expected = new ArrayList<String>(List.of(arr)).toString();
+        final Recipe recipe = new Recipe();
+        recipe.setAppliances(new ArrayList<String>(List.of(arr)));
+        final Field field = recipe.getClass().getDeclaredField("appliances");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe).toString(),msg);
     }
 
     @Test
-    void setCookTime() {
+    void setCookTime() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for cookTime";
+        final double expected = 2.2;
+        final Recipe recipe = new Recipe();
+        recipe.setCookTime(2.2);
+        final Field field = recipe.getClass().getDeclaredField("cookTime");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe), msg);
     }
 
     @Test
-    void setDifficultyRating() {
+    void setDifficultyRating() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for difficultyRating";
+        final double expected = 3.7;
+        final Recipe recipe = new Recipe();
+        recipe.setDifficultyRating(3.7);
+        final Field field = recipe.getClass().getDeclaredField("difficultyRating");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe), msg);
     }
 
     @Test
-    void setQualityRating() {
+    void setQualityRating() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for qualityRating";
+        final double expected = 4.7;
+        final Recipe recipe = new Recipe();
+        recipe.setQualityRating(4.7);
+        final Field field = recipe.getClass().getDeclaredField("qualityRating");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe), msg);
     }
 
     @Test
-    void setCuisine() {
+    void setCuisine() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for cuisine";
+        final String expected = "Chinese";
+        final Recipe recipe = new Recipe();
+        recipe.setCuisine("Chinese");
+        final Field field = recipe.getClass().getDeclaredField("cuisine");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe), msg);
     }
 
     @Test
-    void setFlavor() {
+    void setFlavor() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for flavor";
+        final String expected = "Savory";
+        final Recipe recipe = new Recipe();
+        recipe.setFlavor("Savory");
+        final Field field = recipe.getClass().getDeclaredField("flavor");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe), msg);
     }
 
     @Test
-    void setDiets() {
+    void setDiets() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for diets";
+        final String[] arr = {"Kosher", "Vegetarian", "Halal"};
+        final String expected = new ArrayList<String>(List.of(arr)).toString();
+        final Recipe recipe = new Recipe();
+        recipe.setDiets(new ArrayList<String>(List.of(arr)));
+        final Field field = recipe.getClass().getDeclaredField("diets");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe).toString(),msg);
     }
 }
