@@ -6,9 +6,10 @@ import com.fooddude.cookbook.model.Recipe;
 import java.util.List;
 
 public interface RecipeService {
-    public Recipe saveRecipe(Recipe recipe);
     public List<Recipe> getAllRecipes();
     public List<Recipe> getFilteredRecipes(Filter filter);
+    public List<Recipe> getRecipesByIds(List<Integer> ids);
+    public Recipe addRecipe(Recipe recipe);
     public void deleteRecipe(Recipe recipe);
 
 }

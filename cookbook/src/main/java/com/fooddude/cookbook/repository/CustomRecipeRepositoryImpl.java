@@ -2,12 +2,6 @@ package com.fooddude.cookbook.repository;
 
 import com.fooddude.cookbook.model.Filter;
 import com.fooddude.cookbook.model.Recipe;
-import org.jetbrains.annotations.NotNull;
-
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +10,15 @@ import java.util.Set;
 
 public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
 
-   // @Override
-    public List<Recipe> filteredSearch(Filter filter, @NotNull List<Recipe> allRecipes)
+    @Override
+    public List<Recipe> findByIds(List<Integer> ids) {
+        return null;
+    }
+
+    @Override
+    public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes)
     {
-        List<Recipe> filteredRecipes = new ArrayList<Recipe>();
+        List<Recipe> filteredRecipes = new ArrayList<>();
 
         // TODO implement if filter has property x, then check recipe for property x
         // i.e., if the filter has no ingredients listed, then don't check for ingredients
@@ -100,10 +99,6 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     private boolean checkFlavor(Filter f, Recipe r)
     {
         return f.getFlavor().equals(r.getFlavor());
-    }
-    
-    public int add(int adding) {
-    	return adding + adding;
     }
 
     //Method to check diets

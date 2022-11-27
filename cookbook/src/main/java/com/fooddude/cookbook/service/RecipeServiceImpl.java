@@ -10,29 +10,28 @@ import java.util.List;
 
 @Service
 public class RecipeServiceImpl implements RecipeService{
-
     @Autowired
     private RecipeRepository recipeRepository;
-
-    @Override
-    public Recipe saveRecipe(Recipe recipe) {
-        return recipeRepository.save(recipe);
-    }
 
     @Override
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
-
     @Override
     public List<Recipe> getFilteredRecipes(Filter filter) {
         return recipeRepository.filteredSearch(filter, getAllRecipes());
     }
-
+    @Override
+    public List<Recipe> getRecipesByIds(List<Integer> ids) {
+        return recipeRepository.findByIds(ids);
+    }
+    @Override
+    public Recipe addRecipe(Recipe recipe) {
+        return recipeRepository.save(recipe);
+    }
     @Override
     public void deleteRecipe(Recipe recipe) {
         recipeRepository.delete(recipe);
     }
-
 
 }

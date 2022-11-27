@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private String[] instructions;

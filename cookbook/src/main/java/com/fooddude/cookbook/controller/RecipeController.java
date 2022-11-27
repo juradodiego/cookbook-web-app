@@ -17,25 +17,26 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
-    @PostMapping("/add")
-    public String add(@RequestBody Recipe recipe){
-        recipeService.saveRecipe(recipe);
-        return "New recipe is added";
-    }
-
     @GetMapping("/getAll")
     public List<Recipe> getAllRecipes(){
         return recipeService.getAllRecipes();
     }
-
     @GetMapping("/getFiltered")
-    public List<Recipe> getFilteredRecipes(Filter filter){
+    public List<Recipe> getFilteredRecipes(@RequestBody Filter filter){
         return recipeService.getFilteredRecipes(filter);
     }
-
-    // TODO fix delete method -> delete does not delete
+    @GetMapping("/getByIds")
+    public List<Recipe> getRecipesByIds(@RequestBody List<Integer> ids){
+        return recipeService.getRecipesByIds(ids);
+    }
+    @PostMapping("/add")
+    public String add(@RequestBody Recipe recipe){
+        recipeService.addRecipe(recipe);
+        return "New recipe is added";
+    }
     @PostMapping("/delete")
     public String delete(@RequestBody Recipe recipe){
+        // TODO fix delete method -> delete does not delete
         recipeService.deleteRecipe(recipe);
         return "A recipe has been deleted";
     }
