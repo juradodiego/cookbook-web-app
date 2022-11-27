@@ -1,8 +1,14 @@
 package com.fooddude.cookbook.model;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Filter {
     private String[] ingredients;
     private String[] appliances;

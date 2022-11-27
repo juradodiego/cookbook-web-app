@@ -1,13 +1,14 @@
 package com.fooddude.cookbook.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashMap;
 
+@Getter
+@Setter
 @Entity
-@Data
-@Table(name="tbl_recipes")
+@NoArgsConstructor
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

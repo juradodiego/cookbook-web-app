@@ -1,17 +1,19 @@
 package com.fooddude.cookbook.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
-@Data
-@Table(name="tbl_users")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
     private Integer id;
     private String firstName;
     private String lastName;
