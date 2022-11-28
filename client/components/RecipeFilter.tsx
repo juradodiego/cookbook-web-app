@@ -1,6 +1,6 @@
 import {
-  ChevronDoubleRightIcon,
   ChevronDownIcon,
+  ChevronRightIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -50,7 +50,7 @@ export default function RecipeFilter() {
   };
 
   return (
-    <div className="rounded-md focus-within:shadow-md p-5 bg-white flex flex-col">
+    <div className="rounded-md focus-within:shadow-md p-5 bg-white flex flex-col h-80 mt-5">
       <div className="flex bg-gray-200 rounded-lg h-10 w-[22rem] space-x-2">
         <MagnifyingGlassIcon className="ml-2 my-auto h-5 text-gray-700" />
         <input
@@ -201,8 +201,9 @@ export default function RecipeFilter() {
           onChange={(e) => setFlavor(e.target.value)}
         />
       </div>
-      <div className="h-10 w-10 rounded-full cursor-pointer ml-auto mt-4 items-center justify-center hover:bg-gray-300 flex active:bg-gray-400">
-        <ChevronDoubleRightIcon className="h-5" />
+      <div className="h-10 w-30 rounded-full cursor-pointer ml-auto mt-4 items-center justify-center hover:bg-gray-300 flex active:bg-gray-400 px-2 select-none">
+        <p className="mr-1">Filter Recipes</p>
+        <ChevronRightIcon className="h-5" />
       </div>
     </div>
   );

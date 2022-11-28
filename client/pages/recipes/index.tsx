@@ -17,6 +17,72 @@ const sampleRecipes: RecipeWidgetT[] = [
       "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg",
     id: 2,
   },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
+  {
+    name: "Spaghetti and Meatballs",
+    imageUrl:
+      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
+    id: 1,
+  },
 ];
 
 interface RecipeWidgetT {
@@ -46,7 +112,7 @@ export default function Home() {
       <div className="flex mt-5 ml-5">
         <RecipeFilter />
         {/* Individual recipe widgets */}
-        <div className="flex mx-5 mt-2 space-x-5">
+        <div className="flex mx-5 mt-2 flex-wrap">
           {recipes?.map((recipe, index) => (
             <RecipeWidget
               name={recipe.name}
