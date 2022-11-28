@@ -26,7 +26,8 @@ export default function RecipeFilter() {
     stateChangeHandler: Dispatch<SetStateAction<string>>,
     dropdownCollapseHandler: Dispatch<SetStateAction<boolean>>
   ) => {
-    stateChangeHandler(prefix + target.innerHTML);
+    const elementTarget = target as Element;
+    stateChangeHandler(prefix + elementTarget.innerHTML);
     dropdownCollapseHandler(false);
   };
 
