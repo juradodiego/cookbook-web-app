@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
     @Override
     public User getUser(String username, String password) {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username, userRepository.findAll());
         // TODO add exception throw if user is not detected
         return authorizeLogin(user, password) ? user : null;
         // TODO add exception throw if user is not returned

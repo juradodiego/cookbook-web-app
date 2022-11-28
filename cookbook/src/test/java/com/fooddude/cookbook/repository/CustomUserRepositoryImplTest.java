@@ -18,5 +18,6 @@ class CustomUserRepositoryImplTest {
 
     @Test
     void findByUsername() {
+        // TODO implement test method for findByUsername method
     }
 }
