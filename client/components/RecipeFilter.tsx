@@ -6,6 +6,11 @@ import {
 import { Dispatch, SetStateAction, useState } from "react";
 
 export default function RecipeFilter() {
+  const [ingredients, setIngredients] = useState("");
+  const [appliances, setAppliances] = useState("");
+  const [cuisine, setCuisine] = useState("");
+  const [flavor, setFlavor] = useState("");
+
   const [qualityDropdownActive, setQualityDropdownActive] = useState(false);
   const [qualityDropdownText, setQualityDropdownText] =
     useState("Quality Rating");
@@ -51,6 +56,8 @@ export default function RecipeFilter() {
           className="flex-grow rounded-lg focus:outline-none text-gray-800 bg-gray-200"
           type="text"
           placeholder="Ingredients (ex. Sugar, Flour)"
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
         />
       </div>
       <div className="flex bg-gray-200 rounded-lg h-10 w-[22rem] space-x-2 mt-2">
@@ -59,6 +66,8 @@ export default function RecipeFilter() {
           className="flex-grow rounded-lg focus:outline-none text-gray-800 bg-gray-200"
           type="text"
           placeholder="Appliances (ex. Oven, Electric mixer)"
+          value={appliances}
+          onChange={(e) => setAppliances(e.target.value)}
         />
       </div>
       <div className="flex">
@@ -171,7 +180,27 @@ export default function RecipeFilter() {
           </div>
         </div>
       </div>
-      <div className="h-10 w-10 rounded-full cursor-pointer ml-auto mt-auto items-center justify-center hover:bg-gray-300 flex active:bg-gray-400">
+      <div className="flex bg-gray-200 rounded-lg h-10 w-[22rem] space-x-2 mt-2">
+        <MagnifyingGlassIcon className="ml-2 my-auto h-5 text-gray-700" />
+        <input
+          className="flex-grow rounded-lg focus:outline-none text-gray-800 bg-gray-200"
+          type="text"
+          placeholder="Cuisine"
+          value={cuisine}
+          onChange={(e) => setCuisine(e.target.value)}
+        />
+      </div>
+      <div className="flex bg-gray-200 rounded-lg h-10 w-[22rem] space-x-2 mt-2">
+        <MagnifyingGlassIcon className="ml-2 my-auto h-5 text-gray-700" />
+        <input
+          className="flex-grow rounded-lg focus:outline-none text-gray-800 bg-gray-200"
+          type="text"
+          placeholder="Flavor"
+          value={flavor}
+          onChange={(e) => setFlavor(e.target.value)}
+        />
+      </div>
+      <div className="h-10 w-10 rounded-full cursor-pointer ml-auto mt-4 items-center justify-center hover:bg-gray-300 flex active:bg-gray-400">
         <ChevronDoubleRightIcon className="h-5" />
       </div>
     </div>
