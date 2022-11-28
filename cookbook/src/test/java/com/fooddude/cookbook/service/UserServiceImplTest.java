@@ -18,6 +18,8 @@ class UserServiceImplTest {
 
     @Test
     void getUser() {
+        // TODO add successful test
+        // TODO add UserNotFoundException test
     }
 
     @Test

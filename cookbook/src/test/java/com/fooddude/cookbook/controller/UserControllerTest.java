@@ -18,6 +18,8 @@ class UserControllerTest {
 
     @Test
     void getUser() {
+        // TODO add successful test
+        // TODO add IncorrectPasswordException test
     }
 
     @Test
