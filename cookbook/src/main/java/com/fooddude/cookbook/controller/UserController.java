@@ -1,5 +1,7 @@
 package com.fooddude.cookbook.controller;
 
+import com.fooddude.cookbook.exception.IncorrectPasswordException;
+import com.fooddude.cookbook.exception.UserNotFoundException;
 import com.fooddude.cookbook.model.User;
 import com.fooddude.cookbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,10 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/get")
-    public User getUser(@RequestBody String username, String password){
-        return userService.getUser(username, password);
-        // TODO add exception handling & throwing
+    public User getUser(@RequestBody String username, String password) throws Exception {
+        User user = userService.getUser(username, password);
+        if (user == null) throw new IncorrectPasswordException();
+        return user;
     }
     @PostMapping("/create")
     public String createUser(@RequestBody User user){

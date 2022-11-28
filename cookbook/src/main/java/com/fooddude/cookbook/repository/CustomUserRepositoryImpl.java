@@ -9,9 +9,9 @@ public class CustomUserRepositoryImpl implements CustomUserRepository{
     public User findByUsername(String username, List<User> allUsers) {
         // TODO test method
         for (User user : allUsers)
-            userMap.put(user.getUsername(), user);
-
-        return userMap.get(username);
+            if (username.equals(user.getUsername()))
+                return user;
+        return null;
     }
 
 } // end of CustomUserRepositoryImpl class
