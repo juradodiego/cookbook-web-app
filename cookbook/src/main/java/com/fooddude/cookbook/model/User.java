@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,7 +21,8 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private ArrayList<Integer> savedRecipeIds;
-    // TODO add friends list
+    @Column
+    @ElementCollection(targetClass=Integer.class)
+    private List<Integer> savedRecipeIds;
 
 } // end of User class
