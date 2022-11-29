@@ -10,7 +10,15 @@ import java.util.Set;
 
 public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     @Override
-    public List<Recipe> findByIds(List<Integer> ids) {
+    public Recipe findRecipeById(Integer id, List<Recipe> allRecipes){
+        for (Recipe recipe : allRecipes)
+            if (id.equals(recipe.getId()))
+                return recipe;
+        return null;
+    }
+
+    @Override
+    public List<Recipe> findByIds(List<Integer> ids, List<Recipe> allRecipes) {
         //TODO implement findByIds method
         //TODO add test method for findByIds method
         return null;

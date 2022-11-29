@@ -17,12 +17,14 @@ class CustomRecipeRepositoryImplTest {
     void tearDown() {
 
     }
+    @Test
+    void findRecipeById(){
 
+    }
     @Test
     void findByIds() {
 
     }
-
     @Test
     void filteredSearch() {
 

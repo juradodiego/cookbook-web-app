@@ -15,6 +15,10 @@ class RecipeControllerTest {
     @AfterEach
     void tearDown() {
     }
+    @Test
+    void getRecipe(){
+
+    }
 
     @Test
     void getAllRecipes() {

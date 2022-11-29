@@ -1,5 +1,6 @@
 package com.fooddude.cookbook.controller;
 
+import com.fooddude.cookbook.exception.InvalidRecipeIdException;
 import com.fooddude.cookbook.model.Filter;
 import com.fooddude.cookbook.model.Recipe;
 import com.fooddude.cookbook.service.RecipeService;
@@ -16,7 +17,10 @@ import java.util.List;
 public class RecipeController {
     @Autowired
     private RecipeService recipeService;
-
+    @GetMapping("/get")
+    public Recipe getRecipe(@RequestBody Integer id) throws InvalidRecipeIdException {
+        return recipeService.getRecipe(id);
+    }
     @GetMapping("/getAll")
     public List<Recipe> getAllRecipes(){
         return recipeService.getAllRecipes();
