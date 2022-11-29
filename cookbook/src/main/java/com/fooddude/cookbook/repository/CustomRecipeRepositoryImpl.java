@@ -11,7 +11,7 @@ import java.util.Set;
 public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     @Override
     public Recipe findRecipeById(Integer id, List<Recipe> allRecipes){
-        for (Recipe recipe : allRecipes)
+		for (Recipe recipe : allRecipes)
             if (id.equals(recipe.getId()))
                 return recipe;
         return null;
@@ -19,13 +19,10 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
 
     @Override
     public List<Recipe> findByIds(List<Integer> ids, List<Recipe> allRecipes) {
-		//TODO add test method for findByIds method
 		List<Recipe> recipes = new ArrayList<>();
-		for (Recipe recipe : allRecipes){
-			if(ids.contains(recipe.getId())){
+		for (Recipe recipe : allRecipes)
+			if(ids.contains(recipe.getId()))
 				recipes.add(recipe);
-			}
-		}
         return recipes;
     }
     @Override
