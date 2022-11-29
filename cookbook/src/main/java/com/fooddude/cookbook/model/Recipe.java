@@ -17,14 +17,20 @@ public class Recipe {
     private Integer id;
     private String name;
     private String description;
+    @Column
+    @ElementCollection(targetClass=String.class)
     private List<String> instructions;
     private HashMap<String, String> ingredients;
+    @Column
+    @ElementCollection(targetClass=String.class)
     private List<String> appliances;
     private double cookTime;
     private double difficultyRating;
     private double qualityRating;
     private String cuisine;
     private String flavor;
+    @Column
+    @ElementCollection(targetClass=String.class)
     private List<String> diets;
 
 } // end of Recipe class
