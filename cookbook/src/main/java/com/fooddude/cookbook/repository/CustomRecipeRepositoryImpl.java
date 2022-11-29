@@ -18,6 +18,7 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
     }
     @Override
     public List<Recipe> findByIds(List<Integer> ids, List<Recipe> allRecipes) {
+		// TODO program action in scenario where not all ids are collected
 		List<Recipe> recipes = new ArrayList<>();
 		for (Recipe recipe : allRecipes)
 			if(ids.contains(recipe.getId()))

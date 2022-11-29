@@ -25,8 +25,6 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
     private boolean authorizeLogin(User user, String password){
-        // TODO add test method for authorizeLogin method
-        // TODO add more security elements
         return password.equals(user.getPassword());
     }
 

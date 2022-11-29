@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CustomUserRepository {
-    HashMap<String, User> userMap = new HashMap<String, User>();
     User findByUsername(String username, List<User> allUsers);
 
 } // end of UserRepository interface

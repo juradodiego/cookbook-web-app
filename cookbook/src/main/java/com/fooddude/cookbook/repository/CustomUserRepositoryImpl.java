@@ -7,7 +7,6 @@ import java.util.List;
 public class CustomUserRepositoryImpl implements CustomUserRepository{
     @Override
     public User findByUsername(String username, List<User> allUsers) {
-        // TODO test method
         for (User user : allUsers)
             if (username.equals(user.getUsername()))
                 return user;
