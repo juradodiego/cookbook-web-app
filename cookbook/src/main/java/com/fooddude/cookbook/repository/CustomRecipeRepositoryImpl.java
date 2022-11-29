@@ -19,9 +19,14 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
 
     @Override
     public List<Recipe> findByIds(List<Integer> ids, List<Recipe> allRecipes) {
-        //TODO implement findByIds method
-        //TODO add test method for findByIds method
-        return null;
+		//TODO add test method for findByIds method
+		List<Recipe> recipes = new ArrayList<>();
+		for (Recipe recipe : allRecipes){
+			if(ids.contains(recipe.getId())){
+				recipes.add(recipe);
+			}
+		}
+        return recipes;
     }
     @Override
     public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes) {
