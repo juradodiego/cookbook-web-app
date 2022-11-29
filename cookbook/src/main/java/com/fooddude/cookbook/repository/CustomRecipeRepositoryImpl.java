@@ -16,7 +16,6 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
                 return recipe;
         return null;
     }
-
     @Override
     public List<Recipe> findByIds(List<Integer> ids, List<Recipe> allRecipes) {
 		List<Recipe> recipes = new ArrayList<>();
