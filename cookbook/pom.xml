@@ -12,7 +12,7 @@
 	<artifactId>cookbook</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cookbook</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Term Project for CS 1530 - Software Engineering</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -32,10 +32,16 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -43,6 +49,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${project.parent.version}</version>
+				<configuration>
+				<excludes>
+					<exclude>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok</artifactId>
+					</exclude>
+				</excludes>
+			</configuration>
 			</plugin>
 		</plugins>
 	</build>
