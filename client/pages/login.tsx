@@ -1,4 +1,8 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronRightIcon,
+  LockClosedIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 export default function Login() {
@@ -21,6 +25,7 @@ export default function Login() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        <UserCircleIcon className="ml-auto mr-1 h-6 text-gray-700" />
       </div>
       <div className="flex bg-gray-200 rounded-lg h-10 w-[22rem] space-x-2 mt-2 p-2">
         <input
@@ -30,13 +35,14 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <LockClosedIcon className="ml-auto mr-1 h-6 text-gray-700" />
       </div>
       <button
         className="mt-3 ml-auto rounded-md p-2 border border-gray-300 bg-gray-200 hover:bg-gray-300 active:bg-gray-400 flex items-center select-none"
         onClick={handleLogin}
       >
         <p className="text-gray-800">Sign In</p>
-        <ChevronRightIcon className="h-5" />
+        <ChevronRightIcon className="h-5 text-gray-800" />
       </button>
     </div>
   );
