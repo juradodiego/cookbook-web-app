@@ -5,7 +5,7 @@ import Carousel from "../../components/carousel/Carousel";
 import CarouselItem from "../../components/carousel/CarouselItem";
 import NavBar from "../../components/NavBar";
 import { Rating } from "react-simple-star-rating";
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, HeartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 // sample recipe placeholder until API connected
@@ -144,13 +144,19 @@ export default function RecipePage() {
           </Carousel>
         </div>
       </div>
-      <Link
-        className="mt-5 pl-2 py-2 pr-3 bg-gray-300 hover:bg-gray-400 active:bg-gray-500 rounded-lg text-gray-800 mx-auto flex items-center space-x-2 border border-gray-400 w-20 select-none"
-        href="/recipes"
-      >
-        <ChevronLeftIcon className="h-4" />
-        <p className="text-lg">Back</p>
-      </Link>
+      <div className="flex justify-center space-x-10 mt-5">
+        <Link
+          className="pl-2 py-2 pr-3 bg-gray-300 hover:bg-gray-400 active:bg-gray-500 rounded-lg text-gray-800 flex items-center space-x-2 border border-gray-400 select-none"
+          href="/recipes"
+        >
+          <ChevronLeftIcon className="h-5" />
+          <p className="text-lg">Back</p>
+        </Link>
+        <button className="pl-2 py-2 pr-3 bg-green-300 hover:bg-green-400 active:bg-green-500 rounded-lg text-gray-800 flex items-center space-x-2 border border-green-400 select-none">
+          <p className="text-lg">Save Recipe</p>
+          <HeartIcon className="h-5" />
+        </button>
+      </div>
     </div>
   );
 }

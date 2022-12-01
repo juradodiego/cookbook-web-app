@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
-
 
     @Test
     void getId() throws NoSuchFieldException, IllegalAccessException {
@@ -39,7 +39,7 @@ class UserTest {
     }
 
     @Test
-    void getLastName() throws NoSuchFieldException, IllegalAccessException{
+    void getLastName() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Getter method for lastName";
         final String expected = "Jurado";
         final User user = new User();
@@ -90,16 +90,16 @@ class UserTest {
     void getSavedRecipeIds() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Getter method for savedRecipeIds";
         final ArrayList<Integer> expected = new ArrayList<Integer>();
-        for (int i=0; i<10; i+=2)
+        for (int i = 0; i < 10; i += 2)
             expected.add(i);
         final User user = new User();
         final Field field = user.getClass().getDeclaredField("savedRecipeIds");
         field.setAccessible(true);
-        final ArrayList<Integer> arr = new ArrayList<Integer>();
-        for (int i=0; i<10; i+=2)
+        final List<Integer> arr = new ArrayList<Integer>();
+        for (int i = 0; i < 10; i += 2)
             arr.add(i);
         field.set(user, arr);
-        final ArrayList<Integer> actual = user.getSavedRecipeIds();
+        final List<Integer> actual = user.getSavedRecipeIds();
         assertEquals(expected, actual, msg);
 
     }
@@ -164,11 +164,11 @@ class UserTest {
     void setSavedRecipeIds() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Setter Method for savedRecipeIds";
         final ArrayList<Integer> expected = new ArrayList<Integer>();
-        for (int i=0; i<10; i+=2)
+        for (int i = 0; i < 10; i += 2)
             expected.add(i);
         final User user = new User();
         final ArrayList<Integer> arr = new ArrayList<Integer>();
-        for (int i=0; i<10; i+=2)
+        for (int i = 0; i < 10; i += 2)
             arr.add(i);
         user.setSavedRecipeIds(arr);
         final Field field = user.getClass().getDeclaredField("savedRecipeIds");

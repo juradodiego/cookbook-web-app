@@ -85,7 +85,7 @@ const sampleRecipes: RecipeWidgetT[] = [
   },
 ];
 
-interface RecipeWidgetT {
+export interface RecipeWidgetT {
   name: string;
   imageUrl: string;
   id: number;
