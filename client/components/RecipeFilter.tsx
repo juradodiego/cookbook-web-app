@@ -83,7 +83,7 @@ export default function RecipeFilter() {
             <ChevronDownIcon className="text-gray-700 h-5" />
           </div>
           <div
-            className={`absolute top-[15.5rem] ${
+            className={`absolute top-[16.25rem] ${
               difficultyDropdownText == "Difficulty Rating"
                 ? "left-[7.5rem]"
                 : "left-[9rem]"
@@ -138,7 +138,7 @@ export default function RecipeFilter() {
             <ChevronDownIcon className="text-gray-700 h-5" />
           </div>
           <div
-            className={`absolute top-[15.5rem] left-[20.5rem] bg-white rounded-md z-10 border border-gray-300 shadow-md flex flex-col px-5 space-y-2 py-2 mt-2 ${
+            className={`absolute top-[16.25rem] left-[20.5rem] bg-white rounded-md z-10 border border-gray-300 shadow-md flex flex-col px-5 space-y-2 py-2 mt-2 ${
               !qualityDropdownActive && "hidden"
             }`}
           >
