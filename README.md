@@ -65,3 +65,34 @@ type raw -> JSON
 "password" : "password",
 "savedRecipeIds" : [1, 2, 3]
 }
+
+localhost:8080/recipe/add
+POST
+type raw-> JSON
+{
+"name" : "Test",
+"description" : "Test",
+"instructions" : ["Step 1", "Step 2", "Step 3"],
+"ingredients" : { "Test" : "Test Amount"} ,
+"appliances" : ["Appliance 1", "Appliance 2"],
+"cooktime" : 0.0,
+"difficultyRating" : 0.0,
+"qualityRating" : 0.0,
+"cuisine" : "Test",
+"flavor" : "Test",
+"diets" : ["Diet 1", "Diet 2"]
+}
+
+localhost:8080/recipe/getAll
+GET
+
+localhost:8080/recipe/get
+GET
+type raw -> JSON
+1
+
+localhost:8080/recipe/getByIds
+GET
+type raw -> JSON
+[1]
+
