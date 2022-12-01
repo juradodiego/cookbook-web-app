@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -89,17 +90,17 @@ class UserTest {
     @Test
     void getSavedRecipeIds() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Getter method for savedRecipeIds";
-        final ArrayList<Integer> expected = new ArrayList<Integer>();
+        final List<Integer> expected = new ArrayList<Integer>();
         for (int i=0; i<10; i+=2)
             expected.add(i);
         final User user = new User();
         final Field field = user.getClass().getDeclaredField("savedRecipeIds");
         field.setAccessible(true);
-        final ArrayList<Integer> arr = new ArrayList<Integer>();
+        final List<Integer> arr = new ArrayList<Integer>();
         for (int i=0; i<10; i+=2)
             arr.add(i);
         field.set(user, arr);
-        final ArrayList<Integer> actual = user.getSavedRecipeIds();
+        final List<Integer> actual = user.getSavedRecipeIds();
         assertEquals(expected, actual, msg);
 
     }
@@ -163,11 +164,11 @@ class UserTest {
     @Test
     void setSavedRecipeIds() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Setter Method for savedRecipeIds";
-        final ArrayList<Integer> expected = new ArrayList<Integer>();
+        final List<Integer> expected = new ArrayList<Integer>();
         for (int i=0; i<10; i+=2)
             expected.add(i);
         final User user = new User();
-        final ArrayList<Integer> arr = new ArrayList<Integer>();
+        final List<Integer> arr = new ArrayList<Integer>();
         for (int i=0; i<10; i+=2)
             arr.add(i);
         user.setSavedRecipeIds(arr);

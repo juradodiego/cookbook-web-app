@@ -2,14 +2,6 @@
 
 ## Instructions to get running locally:
 
-### Backend:
-
-On Mac Download MAMP for creating a local database
-
-On Windows Download ??? for creating a local database
-
-Looking into creating a local database programmatically.
-
 ### Frontend:
 Install Node.js
 
@@ -19,8 +11,24 @@ run "npm i"
 
 run "npm run dev" to start local server
 
+### Backend:
 
-### Adding Posts and Gets in Postman
+Looking into creating a local database programmatically.
+
+On Mac Download MAMP for creating a local database / On Windows Download XAMPP for creating a local database
+
+In MAMP / XAMPP ensure that MySQL Port is 3306
+
+Start running MySQL Database
+
+Enter directory ~/cookbook/...
+
+run "mvn spring-boot:run"
+
+To test GET and POSTS:
+Download Postman
+
+#### Adding Posts and Gets in Postman
 
 localhost:8080/user/get
 GET 
