@@ -89,7 +89,7 @@ export default function RecipePage() {
         <div className="flex space-x-5 mx-auto">
           {recipe?.imageUrl && (
             <img
-              className="h-88 2xl:w-[35rem] w-[20rem] object-cover object-left pointer-events-none select-none"
+              className="h-88 2xl:w-[35rem] w-[20rem] object-cover object-left pointer-events-none select-none rounded-md"
               src={recipe.imageUrl}
               alt={`Image of ${recipe.name}`}
             />
