@@ -2,10 +2,14 @@ package com.fooddude.cookbook.controller;
 
 import com.fooddude.cookbook.exception.IncorrectPasswordException;
 import com.fooddude.cookbook.exception.UserNotFoundException;
+import com.fooddude.cookbook.model.Login;
 import com.fooddude.cookbook.model.User;
 import com.fooddude.cookbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // Posts / Gets from URL = "localhost:8080/user/..."
 
@@ -17,8 +21,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/get")
-    public User getUser(@RequestBody String username, String password) throws Exception {
-        User user = userService.getUser(username, password);
+    public User getUser(@RequestBody Login login) throws Exception {
+        User user = userService.getUser(login.getUsername(), login.getPassword());
         if (user == null) throw new IncorrectPasswordException();
         return user;
     }

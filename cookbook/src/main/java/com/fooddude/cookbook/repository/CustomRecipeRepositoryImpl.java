@@ -30,8 +30,7 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
         List<Recipe> filteredRecipes = new ArrayList<>();
         // FIXME refactor all String[] to List<String>
         // TODO implement if filter has property x, then check recipe for property x
-        // i.e., if the filter has no ingredients listed, then don't check for ingredients
-        // and if the filter has ingredients listed, then check for the ingredients
+
         for(Recipe recipe : allRecipes)
         {
         	// If ingredients don't match, break
@@ -60,8 +59,7 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
         return filteredRecipes;
     }
 	
-    private boolean checkIngredients(Filter f, Recipe r)
-    {
+    private boolean checkIngredients(Filter f, Recipe r) {
     	Set<String> ingredients_set = r.getIngredients().keySet();
     	List<String> recipe_ingredients = new ArrayList<String>(ingredients_set);
     	return isS2SubsetOfS1(f.getIngredients(), recipe_ingredients);
