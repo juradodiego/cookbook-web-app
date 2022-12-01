@@ -30,18 +30,18 @@ Download Postman
 
 #### Adding Posts and Gets in Postman
 
-localhost:8080/user/get
-GET 
-type raw -> json
+#### localhost:8080/user/get
+GET: type raw -> json
 
 {
 "username" : "diegojurado",
 "password" : "password"
 }
 
-localhost:8080/user/create
-POST
-type raw -> JSON
+#### localhost:8080/user/create
+POST: type raw -> JSON
+
+BODY:
 
 {
 "firstName" : "diego",
@@ -52,9 +52,10 @@ type raw -> JSON
 "savedRecipeIds" : [1]
 }
 
-localhost:8080/user/update
-POST
-type raw -> JSON
+#### localhost:8080/user/update
+POST: type raw -> JSON
+
+BODY:
 
 {
 "id" : 1,
@@ -66,9 +67,11 @@ type raw -> JSON
 "savedRecipeIds" : [1, 2, 3]
 }
 
-localhost:8080/recipe/add
-POST
-type raw-> JSON
+#### localhost:8080/recipe/add
+POST: type raw-> JSON
+
+BODY:
+
 {
 "name" : "Test",
 "description" : "Test",
@@ -83,24 +86,33 @@ type raw-> JSON
 "diets" : ["Diet 1", "Diet 2"]
 }
 
-localhost:8080/recipe/getAll
-GET
+#### localhost:8080/recipe/getAll
+GET: type raw -> JSON
 
-localhost:8080/recipe/get
-GET
-type raw -> JSON
+BODY:
+
+N/A
+
+##### localhost:8080/recipe/get
+GET: type raw -> JSON
+
+BODY:
+
 1
 
-localhost:8080/recipe/getByIds
-GET
-type raw -> JSON
+#### localhost:8080/recipe/getByIds
+GET: type raw -> JSON
+
+BODY:
+
 [1]
 
-localhost:8080/recipe/getFiltered
-GET
-type raw -> JSON
+#### localhost:8080/recipe/getFiltered
+GET: type raw -> JSON
 
-No filter is required, and if no filter is provided it will provide all
+No filter parameters are required, and if no filter parameter is provided it will get all recipes
+
+BODY:
 
 {
 "ingredients" : ["Test"],
