@@ -96,3 +96,18 @@ GET
 type raw -> JSON
 [1]
 
+localhost:8080/recipe/getFiltered
+GET
+type raw -> JSON
+
+No filter is required, and if no filter is provided it will provide all
+
+{
+"ingredients" : ["Test"],
+"appliances" : ["Test"],
+"difficultyRating" : 0.0,
+"qualityRating" : 0.0,
+"cuisine" : "Test",
+"flavor" : "Test",
+"diets" : ["Test"]
+}
