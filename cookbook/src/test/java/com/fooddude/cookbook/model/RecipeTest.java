@@ -168,6 +168,18 @@ class RecipeTest {
     }
 
     @Test
+    void getImageUrl() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Getter method for image URL";
+        final String expected = "https://images.spot.im/v1/production/nj5fh78jludisdu0nyne";
+        final Recipe recipe = new Recipe();
+        final Field field = recipe.getClass().getDeclaredField("imageUrl");
+        field.setAccessible(true);
+        field.set(recipe, "https://images.spot.im/v1/production/nj5fh78jludisdu0nyne");
+        final String actual = recipe.getImageUrl();
+        assertEquals(expected, actual, msg);
+    }
+
+    @Test
     void setName() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Setter method for name";
         final String expected = "Omelette";
@@ -295,5 +307,16 @@ class RecipeTest {
         final Field field = recipe.getClass().getDeclaredField("diets");
         field.setAccessible(true);
         assertEquals(expected, field.get(recipe).toString(),msg);
+    }
+
+    @Test
+    void setImageUrl() throws NoSuchFieldException, IllegalAccessException {
+        final String msg = "Testing Setter method for image URL";
+        final String expected = "https://images.spot.im/v1/production/nj5fh78jludisdu0nyne";
+        final Recipe recipe = new Recipe();
+        recipe.setImageUrl("https://images.spot.im/v1/production/nj5fh78jludisdu0nyne");
+        final Field field = recipe.getClass().getDeclaredField("imageUrl");
+        field.setAccessible(true);
+        assertEquals(expected, field.get(recipe), msg);
     }
 }
