@@ -12,6 +12,6 @@ public interface RecipeService {
     public List<Recipe> getFilteredRecipes(Filter filter);
     public List<Recipe> getRecipesByIds(List<Integer> ids);
     public Recipe addRecipe(Recipe recipe);
-    public void deleteRecipe(Recipe recipe);
+    public void deleteRecipe(Integer id) throws InvalidRecipeIdException;
 
 } // end of RecipeService interface

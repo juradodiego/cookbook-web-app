@@ -100,6 +100,13 @@ BODY:
 
 1
 
+##### localhost:8080/recipe/delete
+POST: type raw -> JSON
+
+BODY:
+
+1
+
 #### localhost:8080/recipe/getByIds
 GET: type raw -> JSON
 

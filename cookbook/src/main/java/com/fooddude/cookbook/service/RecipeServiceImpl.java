@@ -36,7 +36,9 @@ public class RecipeServiceImpl implements RecipeService{
         return recipeRepository.save(recipe);
     }
     @Override
-    public void deleteRecipe(Recipe recipe) {
+    public void deleteRecipe(Integer id) throws InvalidRecipeIdException {
+        Recipe recipe = recipeRepository.findRecipeById(id, getAllRecipes());
+        if (recipe == null) throw new InvalidRecipeIdException(id);
         recipeRepository.delete(recipe);
     }
 
