@@ -3,87 +3,7 @@ import RecipeWidget from "../../components/RecipeWidget";
 import NavBar from "../../components/NavBar";
 import RecipeFilter from "../../components/RecipeFilter";
 import Head from "next/head";
-
-const sampleRecipes: RecipeWidgetT[] = [
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Ramen Noodles",
-    imageUrl:
-      "https://glebekitchen.com/wp-content/uploads/2017/04/tonkotsuramenfront.jpg",
-    id: 2,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-  {
-    name: "Spaghetti and Meatballs",
-    imageUrl:
-      "https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*",
-    id: 1,
-  },
-];
+import { getAll } from "../../services/recipe";
 
 interface RecipeWidgetT {
   name: string;
@@ -99,7 +19,13 @@ export default function Home() {
 
   // initial fetch recipes using search + filter
   useEffect(() => {
-    setRecipes(sampleRecipes);
+    const fetchRecipes = async () => {
+      const data = await getAll();
+      setRecipes(data);
+    };
+
+    // call the function
+    fetchRecipes().catch(console.error);
   }, []);
 
   return (
