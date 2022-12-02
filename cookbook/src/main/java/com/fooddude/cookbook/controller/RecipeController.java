@@ -11,7 +11,6 @@ import java.util.List;
 
 // Posts / Gets from URL = "localhost:8080/recipe/..."
 
-// TODO add test class for RecipeController class
 @RestController
 @RequestMapping("/recipe")
 public class RecipeController {

@@ -13,7 +13,6 @@ import java.util.List;
 
 // Posts / Gets from URL = "localhost:8080/user/..."
 
-// TODO add test class for UserController class
 @RestController
 @RequestMapping("/user")
 public class UserController {
