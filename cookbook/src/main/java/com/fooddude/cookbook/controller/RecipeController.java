@@ -40,7 +40,6 @@ public class RecipeController {
     }
     @PostMapping("/delete")
     public String deleteRecipe(@RequestBody Integer id) throws InvalidRecipeIdException {
-        // TODO fix delete method -> delete does not delete
         recipeService.deleteRecipe(id);
         return "A recipe has been deleted";
     }
