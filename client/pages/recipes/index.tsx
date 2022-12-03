@@ -3,7 +3,7 @@ import RecipeWidget from "../../components/RecipeWidget";
 import NavBar from "../../components/NavBar";
 import RecipeFilter from "../../components/RecipeFilter";
 import Head from "next/head";
-import { getAll } from "../../services/recipe";
+import { getAll, getFiltered } from "../../services/recipe";
 
 interface RecipeWidgetT {
   name: string;
@@ -28,6 +28,33 @@ export default function Home() {
     fetchRecipes().catch(console.error);
   }, []);
 
+  const filterRecipes = async (
+    ingredients: string[],
+    appliances: string[],
+    difficultyDropdownText: string,
+    qualityDropdownText: string,
+    cuisine: string,
+    flavor: string
+  ) => {
+    console.log(difficultyDropdownText);
+    setRecipes(
+      await getFiltered({
+        ingredients: ingredients,
+        appliances: appliances,
+        difficultyRating:
+          difficultyDropdownText != "Difficulty Rating"
+            ? parseInt(difficultyDropdownText.slice(-1), 10)
+            : 0,
+        qualityRating:
+          qualityDropdownText != "Quality Rating"
+            ? parseInt(qualityDropdownText.slice(-1), 10)
+            : 0,
+        cusine: cuisine,
+        flavor: flavor,
+      })
+    );
+  };
+
   return (
     <div>
       <Head>
@@ -36,7 +63,7 @@ export default function Home() {
       <NavBar />
       {/* Search Bar */}
       <div className="flex mt-5 ml-5">
-        <RecipeFilter />
+        <RecipeFilter filterHandler={filterRecipes} />
         {/* Individual recipe widgets */}
         <div className="flex mx-5 mt-2 flex-wrap">
           {recipes?.map((recipe, index) => (
