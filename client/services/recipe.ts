@@ -33,7 +33,7 @@ export const getAll = async () => {
     const res = await axiosInstance(config);
     return res?.data;
   } catch (err) {
-    return {};
+    return [];
   }
 };
 

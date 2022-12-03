@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Dispatch, SetStateAction, useState } from "react";
 
-export default function RecipeFilter({ filterHandler }) {
+export default function RecipeFilter({ filterHandler }: any) {
   const [ingredients, setIngredients] = useState("");
   const [appliances, setAppliances] = useState("");
   const [cuisine, setCuisine] = useState("");
