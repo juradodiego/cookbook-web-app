@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface CustomRecipeRepository {
-    Recipe findRecipeById(Integer id, List<Recipe> allRecipes) throws InvalidRecipeIdException;
+    Recipe findRecipeById(Integer id, List<Recipe> allRecipes);
     List<Recipe> findByIds(List<Integer> ids, List<Recipe> allRecipes);
     List<Recipe> filteredSearch (Filter filter, List<Recipe> allRecipes);
 
