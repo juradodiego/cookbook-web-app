@@ -7,29 +7,14 @@ import NavBar from "../../components/NavBar";
 import { Rating } from "react-simple-star-rating";
 import { ChevronLeftIcon, HeartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-
-// sample recipe placeholder until API connected
-const sampleRecipe: Recipe = {
-  id: 1,
-  name: "Spaghetti and Meatballs",
-  qualityRating: 3,
-  difficultyRating: 2.5,
-  description: "Classic Italian Spaghetti & Meatballs. Restauraunt style!",
-  ingredients: ["Spaghetti", "Meatballs", "Red sauce", "Parmesan cheese"],
-  appliances: ["Stovetop"],
-  estPrepTime: 10,
-  estCookTime: 20,
-  imageUrl: "https://images.spot.im/v1/production/nj5fh78jludisdu0nyne",
-  instructions: ["Cook spaghetti.", "Cook meatballs.", "Combine", "Serve"],
-};
-
+import { getById } from "../../services/recipe";
 interface Recipe {
   id: number;
   name: string;
   description: string;
   instructions: string[];
   appliances: string[];
-  ingredients: string[];
+  ingredients: Object;
   qualityRating: number;
   difficultyRating: number;
   estCookTime: number;
@@ -41,14 +26,20 @@ interface Recipe {
 
 export default function RecipePage() {
   const router = useRouter(); // router hook
-  const { id } = router.query; // get recipe id from router query param
-
+  const id = parseInt(router.query.id as string, 10); // get recipe id from router query param
   const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);
 
-  // get recipe from API
   useEffect(() => {
-    setRecipe(sampleRecipe);
-  }, []);
+    const fetchRecipe = async () => {
+      const data = await getById(id);
+      setRecipe(data);
+    };
+
+    // call the function
+    if (id) {
+      fetchRecipe().catch(console.error);
+    }
+  }, [id]);
 
   return (
     <div>
@@ -113,9 +104,14 @@ export default function RecipePage() {
               <div className="flex flex-col space-y-3">
                 <h2 className="text-2xl font-bold">Ingredients:</h2>
                 <ol className="list-decimal ml-4">
-                  {recipe?.ingredients.map((ingredient) => (
-                    <li key={ingredient}>{ingredient}</li>
-                  ))}
+                  {recipe?.ingredients &&
+                    Object.keys(recipe.ingredients).map(
+                      (ingredient, quantity) => (
+                        <li key={ingredient}>
+                          {ingredient}: {quantity}
+                        </li>
+                      )
+                    )}
                 </ol>
               </div>
               <div className="flex flex-col space-y-3">

@@ -5,115 +5,69 @@ import com.fooddude.cookbook.model.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-
-public class CustomRecipeRepositoryImpl implements CustomRecipeRepository{
-    @Override
-    public Recipe findRecipeById(Integer id, List<Recipe> allRecipes){
+public class CustomRecipeRepositoryImpl implements CustomRecipeRepository {
+	@Override
+	public Recipe findRecipeById(Integer id, List<Recipe> allRecipes) {
 		for (Recipe recipe : allRecipes)
-            if (id.equals(recipe.getId()))
-                return recipe;
-        return null;
-    }
-    @Override
-    public List<Recipe> findByIds(List<Integer> ids, List<Recipe> allRecipes) {
+			if (id.equals(recipe.getId()))
+				return recipe;
+		return null;
+	}
+
+	@Override
+	public List<Recipe> findByIds(List<Integer> ids, List<Recipe> allRecipes) {
 		// TODO program action in scenario where not all ids are collected
 		List<Recipe> recipes = new ArrayList<>();
 		for (Recipe recipe : allRecipes)
-			if(ids.contains(recipe.getId()))
+			if (ids.contains(recipe.getId()))
 				recipes.add(recipe);
-        return recipes;
-    }
-    @Override
-    public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes) {
-        List<Recipe> filteredRecipes = new ArrayList<>();
-        // FIXME refactor all String[] to List<String>
-        // TODO implement if filter has property x, then check recipe for property x
-        // i.e., if the filter has no ingredients listed, then don't check for ingredients
-        // and if the filter has ingredients listed, then check for the ingredients
-        for(Recipe recipe : allRecipes)
-        {
-        	// If ingredients don't match, break
-        	if(!checkIngredients(filter, recipe)){continue;}
+		return recipes;
+	}
 
-        	// If appliances don't match, break
-        	if(!checkAppliances(filter, recipe)){continue;}
-        	
-        	// If difficulty ratings don't match, break
-        	if(!checkDifficultyRating(filter, recipe)){continue;}
-        	
-        	// If quality ratings don't match, break
-        	if(!checkQualityRating(filter, recipe)){continue;}
-        	
-        	// If cuisine doesn't match, break
-        	if(!checkCuisine(filter, recipe)){continue;}
+	@Override
+	public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes) {
+		List<Recipe> filteredRecipes = new ArrayList<>();
 
-        	// If flavor doesn't match, break
-        	if(!checkFlavor(filter, recipe)){continue;}
+		String filterCuisine = filter.getCuisine();
+		String filterFlavor = filter.getFlavor();
+		double filterDiffRating = filter.getDifficultyRating();
+		double filterQualRating = filter.getQualityRating();
+		List<String> filterAppliances = filter.getAppliances();
+		List<String> filterDiets = filter.getDiets();
+		List<String> filterIngredients = filter.getIngredients();
 
-        	// If diets don't match, break
-        	if(!checkDiets(filter, recipe)){continue;}
-        	// Else add the recipe
-        	filteredRecipes.add(recipe);
-    	}
-        return filteredRecipes;
-    }
-	
-    private boolean checkIngredients(Filter f, Recipe r)
-    {
-    	Set<String> ingredients_set = r.getIngredients().keySet();
-    	List<String> recipe_ingredients = new ArrayList<String>(ingredients_set);
-    	return isS2SubsetOfS1(f.getIngredients(), recipe_ingredients);
-	}
-    
-	private boolean checkAppliances(Filter f, Recipe r)
-	{
-		return isS2SubsetOfS1(f.getAppliances(), r.getAppliances());
-	}
-	
-	private boolean checkDifficultyRating(Filter f, Recipe r)
-	{
-		return r.getDifficultyRating() <= f.getDifficultyRating();
-	}
-	
-	private boolean checkQualityRating(Filter f, Recipe r)
-	{
-		return r.getQualityRating() >= f.getQualityRating();
-	}
-	
-	private boolean checkCuisine(Filter f, Recipe r)
-	{
-		return f.getCuisine().equals(r.getCuisine());
-	}
-	
-	private boolean checkFlavor(Filter f, Recipe r)
-	{
-		return f.getFlavor().equals(r.getFlavor());
-	}
-	
-	private boolean checkDiets(Filter f, Recipe r)
-	{
-		return isS2SubsetOfS1(r.getDiets(), f.getDiets());
-	}
-	
-	private static boolean isS2SubsetOfS1(List<String> S1, List<String> S2) 
-	{
-		boolean output = true;
-		for(String s2_item : S2){
-			boolean hit_app = false;
-			for(String s1_item : S1){
-				if(s1_item.equals(s2_item)){
-					hit_app = true;
-					break;
+		for (Recipe recipe : allRecipes) {
+
+			if (filterCuisine != null && !filterCuisine.equals(recipe.getCuisine()))
+				continue;
+			if (filterFlavor != null && !filterFlavor.equals(recipe.getFlavor()))
+				continue;
+			if (filterDiffRating != 0 && !(filterDiffRating >= recipe.getDifficultyRating()))
+				continue;
+			if (filterQualRating != 0 && !(filterQualRating <= recipe.getQualityRating()))
+				continue;
+			if (filterAppliances != null && !filterAppliances.containsAll(recipe.getAppliances()))
+				continue;
+			if (filterDiets != null && !recipe.getDiets().containsAll(filterDiets))
+				continue;
+
+			if (filterIngredients != null) {
+				List<String> ingredients = new ArrayList<String>();
+				if (recipe.getIngredients() != null) {
+					ingredients.addAll(recipe.getIngredients().keySet());
+					if (!ingredients.containsAll(filterIngredients))
+						continue;
+				} else {
+					continue;
 				}
 			}
-			if(!hit_app){
-				output = false;
-				break;
-			}
+
+			filteredRecipes.add(recipe);
+
 		}
-	return output;
+
+		return filteredRecipes;
 	}
-	
+
 } // end of CustomRecipeRepositoryImpl class

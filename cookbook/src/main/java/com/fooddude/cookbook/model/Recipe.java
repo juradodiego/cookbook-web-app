@@ -32,5 +32,6 @@ public class Recipe {
     @Column
     @ElementCollection(targetClass=String.class)
     private List<String> diets;
+    private String imageUrl;
 
 } // end of Recipe class

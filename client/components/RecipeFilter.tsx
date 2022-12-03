@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Dispatch, SetStateAction, useState } from "react";
 
-export default function RecipeFilter() {
+export default function RecipeFilter({ filterHandler }: any) {
   const [ingredients, setIngredients] = useState("");
   const [appliances, setAppliances] = useState("");
   const [cuisine, setCuisine] = useState("");
@@ -95,31 +95,31 @@ export default function RecipeFilter() {
               className="rating-dropdown-item"
               onClick={(e) => difficultyDropdownHandler(e.target)}
             >
-              0+
+              0
             </p>
             <p
               className="rating-dropdown-item"
               onClick={(e) => difficultyDropdownHandler(e.target)}
             >
-              1+
+              1
             </p>
             <p
               className="rating-dropdown-item"
               onClick={(e) => difficultyDropdownHandler(e.target)}
             >
-              2+
+              2
             </p>
             <p
               className="rating-dropdown-item"
               onClick={(e) => difficultyDropdownHandler(e.target)}
             >
-              3+
+              3
             </p>
             <p
               className="rating-dropdown-item"
               onClick={(e) => difficultyDropdownHandler(e.target)}
             >
-              4+
+              4
             </p>
             <p
               className="rating-dropdown-item mx-auto"
@@ -146,31 +146,31 @@ export default function RecipeFilter() {
               className="rating-dropdown-item"
               onClick={(e) => qualityDropdownHandler(e.target)}
             >
-              0+
+              0
             </p>
             <p
               className="rating-dropdown-item"
               onClick={(e) => qualityDropdownHandler(e.target)}
             >
-              1+
+              1
             </p>
             <p
               className="rating-dropdown-item"
               onClick={(e) => qualityDropdownHandler(e.target)}
             >
-              2+
+              2
             </p>
             <p
               className="rating-dropdown-item"
               onClick={(e) => qualityDropdownHandler(e.target)}
             >
-              3+
+              3
             </p>
             <p
               className="rating-dropdown-item"
               onClick={(e) => qualityDropdownHandler(e.target)}
             >
-              4+
+              4
             </p>
             <p
               className="rating-dropdown-item mx-auto"
@@ -201,7 +201,23 @@ export default function RecipeFilter() {
           onChange={(e) => setFlavor(e.target.value)}
         />
       </div>
-      <div className="h-10 w-30 rounded-full cursor-pointer ml-auto mt-4 items-center justify-center hover:bg-gray-300 flex active:bg-gray-400 px-2 select-none">
+      <div
+        className="h-10 w-30 rounded-full cursor-pointer ml-auto mt-4 items-center justify-center hover:bg-gray-300 flex active:bg-gray-400 px-2 select-none"
+        onClick={() =>
+          filterHandler(
+            ingredients != ""
+              ? ingredients.split(",").map((ingredient) => ingredient.trim())
+              : null,
+            appliances != ""
+              ? appliances.split(",").map((appliance) => appliance.trim())
+              : null,
+            difficultyDropdownText,
+            qualityDropdownText,
+            cuisine != "" ? cuisine : null,
+            flavor != "" ? flavor : null
+          )
+        }
+      >
         <p className="mr-1">Filter Recipes</p>
         <ChevronRightIcon className="h-5" />
       </div>
