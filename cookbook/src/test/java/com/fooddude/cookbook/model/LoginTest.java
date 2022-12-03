@@ -31,4 +31,23 @@ class LoginTest {
         final String actual = login.getPassword();
         assertEquals(expected, actual, msg);
     }
+
+    @Test
+    void allArgsConstructor() throws NoSuchFieldException, IllegalAccessException {
+        Login login = new Login("test_username", "test_password");
+
+        final Field usernameField = login.getClass().getDeclaredField("username");
+        usernameField.setAccessible(true);
+
+         final Field passwordField = login.getClass().getDeclaredField("password");
+         passwordField.setAccessible(true);
+
+         String actualUsername = (String) usernameField.get(login);
+        String actualPassword = (String) passwordField.get(login);
+
+        assertEquals("test_username", actualUsername, "Testing Login all args constructor method: username does not match");
+        assertEquals("test_password", actualPassword, "Testing Login all args constructor method: password does not match");
+
+
+    }
 }

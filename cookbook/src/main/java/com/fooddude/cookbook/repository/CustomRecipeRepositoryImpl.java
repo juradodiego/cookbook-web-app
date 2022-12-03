@@ -5,7 +5,6 @@ import com.fooddude.cookbook.model.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class CustomRecipeRepositoryImpl implements CustomRecipeRepository {
 	@Override
@@ -44,9 +43,9 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository {
 				continue;
 			if (filterFlavor != null && !filterFlavor.equals(recipe.getFlavor()))
 				continue;
-			if (filterDiffRating != 0 && !(filterDiffRating == recipe.getDifficultyRating()))
+			if (filterDiffRating != 0 && !(filterDiffRating >= recipe.getDifficultyRating()))
 				continue;
-			if (filterQualRating != 0 && !(filterQualRating == recipe.getQualityRating()))
+			if (filterQualRating != 0 && !(filterQualRating <= recipe.getQualityRating()))
 				continue;
 			if (filterAppliances != null && !filterAppliances.containsAll(recipe.getAppliances()))
 				continue;
