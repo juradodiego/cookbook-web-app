@@ -96,7 +96,6 @@ class RecipeServiceImplTest {
     }
 
     @Test
-    @Disabled
     void getAllRecipes() {
 
         String msg = "Testing get all recipes";
@@ -181,20 +180,78 @@ class RecipeServiceImplTest {
     }
 
     @Test
-    @Disabled
     void getRecipesByIds() {
 
+        Recipe recipe1 = new Recipe();
+        recipe1 = recipeRepository.save(recipe1);
+        int recipe1Id = recipe1.getId();
+        List<Integer> ids = new ArrayList<>();
+        ids.add(recipe1Id);
+
+        int actual = (recipeService.getRecipesByIds(ids)).size();
+        int expected = 1;
+
+        String msg = "Testing getRecipesByIds when there is 1 id match";
+
+        assertEquals(expected, actual, msg);
+        List<Integer> noValidIds = new ArrayList<>();
+        noValidIds.add(1000202);
+        actual = (recipeService.getRecipesByIds(noValidIds).size());
+        expected = 0;
+        msg = "testing getRecipesByIds when there are no id matches";
+
+        assertEquals(expected, actual, msg);
+
     }
 
     @Test
-    @Disabled
+    @Transactional
     void addRecipe() {
+        recipeRepository.deleteAll();
+        Recipe recipe1 = new Recipe();
+        recipe1 = recipeService.addRecipe(recipe1);
+
+        int actual = recipeRepository.findAll().size();
+        int expected = 1;
+        String msg = "Testing addRecipe with one added recipe";
+
+        assertEquals(expected, actual, msg);
     }
 
     @Test
-    @Disabled
-    void deleteRecipe() {
+    void deleteRecipeTest() throws InvalidRecipeIdException {
+        Recipe recipe1 = new Recipe();
+        recipe1 = recipeRepository.save(recipe1);
+
+        int expected = 101;
+        int actual = recipeRepository.findAll().size();
+
+        String msg = "Size before deleting 1 recipe";
+
+        assertEquals(expected, actual, msg);
+
+        expected = 100;
+        recipeService.deleteRecipe(recipe1.getId());
+        actual = recipeRepository.findAll().size();
+        msg = "Size after deleting 1 recipe";
+
+        assertEquals(expected, actual, msg);
     }
+
+    @Test
+    void deleteRecipeTestExceptionThrownTest() throws InvalidRecipeIdException{
+        String msg = "Testing when InvalidRecipeIdException is thrown";
+        assertThrows(InvalidRecipeIdException.class, new Executable() {
+            @Override
+            public void execute() throws Throwable{
+                recipeService.deleteRecipe(0);
+            }
+
+        }, msg);
+
+    }
+
+
 
 
 }
