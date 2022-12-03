@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -114,27 +115,53 @@ class UserServiceImplTest {
     }
 
     @Test
-    @Disabled
-    void updateUser() {
+    @Transactional
+    void updateUser() throws NoSuchFieldException, IllegalAccessException {
+
+        List<Integer> recipes = new ArrayList<>();
+        recipes.add(1);
+
         User user = new User();
         user.setUsername("testUser");
         user.setFirstName("Test");
         user.setLastName("User");
         user.setPassword("password");
         user.setEmail("user@test.com");
+        user.setSavedRecipeIds(recipes);
         user = userRepository.save(user);
         Integer userId = user.getId();
 
+        User orig = new User();
+        final Field field = orig.getClass().getDeclaredField("id");
+        field.setAccessible(true);
+        field.set(orig, userId);
+        orig.setFirstName(user.getFirstName());
+        orig.setLastName(user.getLastName());
+        orig.setUsername(user.getUsername());
+        orig.setPassword(user.getPassword());
+        orig.setEmail(user.getEmail());
+        orig.setSavedRecipeIds(user.getSavedRecipeIds());
 
-        String msg = "Testing updateUser method";
-        Optional<User> result = userRepository.findById(userId);
+        assertNotEquals(user, orig, "Deep copy failed");
 
-        user.setUsername("");
+        orig.setPassword("strong_password");
+        userService.updateUser(orig);
 
-//        assertNotEquals(expected, actual, msg);
+        User expected = orig;
+        List<Integer> expectedRecipes = expected.getSavedRecipeIds();
 
+        Optional<User> actualOp = userRepository.findById(userId);
+        assertTrue(actualOp.isPresent());
+        User actual = actualOp.get();
+        List<Integer> actualRecipes = actual.getSavedRecipeIds();
 
-
+        assertNotEquals(expected, actual, "Referencing expected and actual are the same object");
+        assertEquals(expected.getUsername(), actual.getUsername(), "Username does not match");
+        assertEquals(expected.getFirstName(), actual.getFirstName(), "User firstName does not match");
+        assertEquals(expected.getLastName(), actual.getLastName(), "User lastName does not match");
+        assertEquals(expected.getPassword(), actual.getPassword(), "User password does not match");
+        assertEquals(expected.getEmail(), actual.getEmail(), "User email does not match");
+        assertEquals(expectedRecipes.toString(), actualRecipes.toString(), "User recipes do not match");
 
     }
 }

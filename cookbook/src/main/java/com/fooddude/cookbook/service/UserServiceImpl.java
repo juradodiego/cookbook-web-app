@@ -6,6 +6,8 @@ import com.fooddude.cookbook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
@@ -21,8 +23,17 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
     @Override
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public User updateUser(User updatedUser) {
+        Optional<User> userOp = userRepository.findById(updatedUser.getId());
+        User user = userOp.get();
+        user.setFirstName(updatedUser.getFirstName());
+        user.setLastName(updatedUser.getLastName());
+        user.setUsername(updatedUser.getUsername());
+        user.setEmail(updatedUser.getEmail());
+        user.setPassword(updatedUser.getPassword());
+        user.setSavedRecipeIds(updatedUser.getSavedRecipeIds());
+
+        return user;
     }
     private boolean authorizeLogin(User user, String password){
         return password.equals(user.getPassword());
