@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.mockito.Mockito.mock;
+
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+
 
 
 @SpringBootTest
@@ -30,11 +30,32 @@ class CustomRecipeRepositoryImplTest {
     CustomRecipeRepository recipeRepository;
 
     private List<Recipe> allRecipes;
+    private Filter filter;
+    private Recipe recipeFull;
+    HashMap<String, String> ingredients;
+    List<String> appliances;
+    List<String> filterIngredients;
+    List<String> diets;
+
+
 
     @BeforeEach
     void setUp() throws NoSuchFieldException, IllegalAccessException {
 
+        filter = new Filter();
+        recipeFull = new Recipe();
+
         allRecipes = new ArrayList<>();
+
+        ingredients = new HashMap<>();
+        appliances = new ArrayList<>();
+        filterIngredients = new ArrayList<>();
+        diets = new ArrayList<>();
+
+        ingredients.put("Pasta", "One");
+        filterIngredients.add("Pasta");
+        appliances.add("Stove");
+        diets.add("Diet");
 
         Recipe recipe1 = new Recipe();
         final Field field1 = recipe1.getClass().getDeclaredField("id");
@@ -54,11 +75,32 @@ class CustomRecipeRepositoryImplTest {
         field3.set(recipe3, 3);
         allRecipes.add(recipe3);
 
+        filter.setAppliances(appliances);
+        filter.setFlavor("Good");
+        filter.setIngredients(filterIngredients);
+        filter.setDiets(diets);
+        filter.setCuisine("Italian");
+        filter.setQualityRating(3.0);
+        filter.setDifficultyRating(2.0);
+
+
+        recipeFull.setAppliances(appliances);
+        recipeFull.setFlavor("Good");
+        recipeFull.setIngredients(ingredients);
+        recipeFull.setDiets(diets);
+        recipeFull.setCuisine("Italian");
+        recipeFull.setQualityRating(3.0);
+        recipeFull.setDifficultyRating(2.0);
+
+
+
+
 
     }
 
     @AfterEach
     void tearDown() {
+        allRecipes.clear();
 
     }
 
@@ -88,22 +130,153 @@ class CustomRecipeRepositoryImplTest {
     }
 
     @Test
-    @Disabled
-    void findByIdsMatchTest() {
+    void findByIdsTest() {
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);
+        ids.add(2);
+
+        String msg = "Test findByIds - Test Case: 2 ids match";
+        Integer actual = recipeRepository.findByIds(ids, allRecipes).size();
+
+        assertEquals(2, actual, msg);
 
 
+        ids.add(3);
+        msg = "Test findByIds = Test case: all ids in allRecipes match";
+        actual = recipeRepository.findByIds(ids, allRecipes).size();
+
+        assertEquals(3, actual, msg);
+
+
+        ids.remove(2); //remove index 1 ( id: 3 )
+        ids.remove(1);
+        msg = "Test findByIds - Test Case: 1 id matches";
+        actual = recipeRepository.findByIds(ids, allRecipes).size();
+
+        assertEquals(1, actual, msg);
+
+
+        ids.remove(0);
+        msg = "Test findByIds = Test Case: NO id Matches";
+        actual = recipeRepository.findByIds(ids, allRecipes).size();
+
+        assertEquals(0, actual, msg);
     }
 
-    @Test
-    @Disabled
-    void findByIdsNoMatchTest() {
-
-    }
 
     @Test
-    @Disabled
     void filteredSearchFilterAndRecipeMatchTest() {
 
+
+
+        allRecipes.clear();
+
+        allRecipes.add(recipeFull);
+
+        int actual;
+
+        String msg = "Test filteredSearch = Test Case: filter matches one recipe";
+
+        actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        assertEquals(1, actual, msg);
+
+    }
+    @Test
+    void filteredSearchCuisineMismatchTest(){
+        String msg = "Test filteredSearch - Test case Filter and recipe don't match, different Cuisine";
+        filter.setCuisine("German");
+        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        assertEquals(0, actual, msg);
+    }
+    @Test
+    void filteredSearchFlavorMismatchTest(){
+
+        allRecipes.clear();
+
+        allRecipes.add(recipeFull);
+
+        String msg = "Test filteredSearch - Test case filter and recipe don't match, different Flavor";
+
+        filter.setFlavor("Bad");
+        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        assertEquals(0, actual, msg);
+
+    }
+
+    @Test
+    void filteredSearchDifficultyRatingMismatchTest(){
+        allRecipes.clear();
+
+        allRecipes.add(recipeFull);
+        String msg = "Test filteredSearch - Test case filter and recipe don't match, different Difficulty Rating";
+        filter.setDifficultyRating(10.0);
+        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        assertEquals(0, actual, msg);
+
+    }
+
+    @Test
+    void filteredSearchQualityRatingMismatchTest(){
+        allRecipes.clear();
+
+        allRecipes.add(recipeFull);
+        String msg = "Test filteredSearch - Test case filter and recipe don't match, different Quality Rating";
+        filter.setQualityRating(9.0);
+        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        assertEquals(0, actual, msg);
+    }
+
+    @Test
+    void filteredSearchAppliancesMismatchTest(){
+        allRecipes.clear();
+
+        allRecipes.add(recipeFull);
+
+        String msg = "Test filteredSearch - Test case filter and recipe don't match, different Appliances";
+        List<String> wrongAppliance = new ArrayList<>();
+        wrongAppliance.add("Wood fire");
+        filter.setAppliances(wrongAppliance);
+
+        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        assertEquals(0, actual, msg);
+    }
+
+    @Test
+    void filteredSearchDietsMismatchTest(){
+        allRecipes.clear();
+
+        allRecipes.add(recipeFull);
+        String msg = "Test filteredSearch - Test case filter and recipe don't match, different Diets";
+
+        List<String> wrongDiets = new ArrayList<>();
+        wrongDiets.add("Very Unhealthy");
+        filter.setDiets(wrongDiets);
+        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        assertEquals(0, actual, msg);
+
+    }
+
+    @Test
+    void filteredSearchIngredientsMisMatchTest(){
+        allRecipes.clear();
+
+        allRecipes.add(recipeFull);
+
+        String msg = "Test filteredSearch - Test case filter and recipe don't match, different Ingredients";
+
+        List<String> wrongIngredients = new ArrayList<>();
+        wrongIngredients.add("Giant Rat");
+        filter.setIngredients(wrongIngredients);
+        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        assertEquals(0, actual, msg);
 
     }
 }
