@@ -27,7 +27,7 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
 
-    @GetMapping("/getFiltered")
+    @PostMapping("/getFiltered")
     public List<Recipe> getFilteredRecipes(@RequestBody Filter filter) {
         return recipeService.getFilteredRecipes(filter);
     }
