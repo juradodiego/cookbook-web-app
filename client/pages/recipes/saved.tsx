@@ -1,4 +1,5 @@
 import { HeartIcon } from "@heroicons/react/24/solid";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar";
 import RecipeWidget from "../../components/RecipeWidget";
@@ -22,6 +23,9 @@ export default function SavedRecipes() {
 
   return (
     <div>
+      <Head>
+        <title>FoodDude - Saved Recipes</title>
+      </Head>
       <NavBar />
       <div className="ml-20 mt-5 flex select-none items-center space-x-3">
         <h1 className="text-4xl  text-gray-800">Saved Recipes</h1>
