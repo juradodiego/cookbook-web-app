@@ -5,7 +5,7 @@ import RecipeFilter from "../../components/RecipeFilter";
 import Head from "next/head";
 import { getAll, getFiltered } from "../../services/recipe";
 
-interface RecipeWidgetT {
+export interface RecipeWidgetT {
   name: string;
   imageUrl: string;
   id: number;

@@ -62,3 +62,25 @@ export const getFiltered = async (filterParams: {
     return [];
   }
 };
+
+export const getSavedRecipes = async () => {
+  if (localStorage.getItem("savedRecipes") == null) return [];
+  else {
+    const savedRecipesArr = JSON.parse(localStorage.getItem("savedRecipes"));
+    const config = {
+      method: "post",
+      url: "/recipe/getByIds",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: savedRecipesArr,
+    };
+
+    try {
+      const res = await axiosInstance(config);
+      return res?.data;
+    } catch (err) {
+      return [];
+    }
+  }
+};

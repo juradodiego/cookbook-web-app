@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-
     @Test
     void getId() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Getter method for id";
@@ -40,7 +39,7 @@ class UserTest {
     }
 
     @Test
-    void getLastName() throws NoSuchFieldException, IllegalAccessException{
+    void getLastName() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Getter method for lastName";
         final String expected = "Jurado";
         final User user = new User();
@@ -91,13 +90,13 @@ class UserTest {
     void getSavedRecipeIds() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Getter method for savedRecipeIds";
         final List<Integer> expected = new ArrayList<Integer>();
-        for (int i=0; i<10; i+=2)
+        for (int i = 0; i < 10; i += 2)
             expected.add(i);
         final User user = new User();
         final Field field = user.getClass().getDeclaredField("savedRecipeIds");
         field.setAccessible(true);
         final List<Integer> arr = new ArrayList<Integer>();
-        for (int i=0; i<10; i+=2)
+        for (int i = 0; i < 10; i += 2)
             arr.add(i);
         field.set(user, arr);
         final List<Integer> actual = user.getSavedRecipeIds();
@@ -165,11 +164,11 @@ class UserTest {
     void setSavedRecipeIds() throws NoSuchFieldException, IllegalAccessException {
         final String msg = "Testing Setter Method for savedRecipeIds";
         final List<Integer> expected = new ArrayList<Integer>();
-        for (int i=0; i<10; i+=2)
+        for (int i = 0; i < 10; i += 2)
             expected.add(i);
         final User user = new User();
         final List<Integer> arr = new ArrayList<Integer>();
-        for (int i=0; i<10; i+=2)
+        for (int i = 0; i < 10; i += 2)
             arr.add(i);
         user.setSavedRecipeIds(arr);
         final Field field = user.getClass().getDeclaredField("savedRecipeIds");
