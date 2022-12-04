@@ -15,10 +15,7 @@ export default function NavBar() {
         <NavItem text="Saved Recipes" url="/recipes/saved" />
       </div>
 
-      {/* User Profile */}
-      <div className="w-[137.97px]">
-        <div className="rounded-full h-10 w-10 bg-black mr-5 ml-auto"></div>
-      </div>
+      <div className="w-[137.97px]" />
     </div>
   );
 }

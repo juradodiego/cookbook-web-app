@@ -32,7 +32,7 @@ public class RecipeController {
         return recipeService.getFilteredRecipes(filter);
     }
 
-    @GetMapping("/getByIds")
+    @PostMapping("/getByIds")
     public List<Recipe> getRecipesByIds(@RequestBody List<Integer> ids) {
         return recipeService.getRecipesByIds(ids);
     }

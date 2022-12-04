@@ -6,8 +6,10 @@ import CarouselItem from "../../components/carousel/CarouselItem";
 import NavBar from "../../components/NavBar";
 import { Rating } from "react-simple-star-rating";
 import { ChevronLeftIcon, HeartIcon } from "@heroicons/react/24/outline";
+import { HeartIcon as FilledHeartIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { getById } from "../../services/recipe";
+import { getRecipeSaved } from "../../utils/recipes";
 interface Recipe {
   id: number;
   name: string;
@@ -28,6 +30,7 @@ export default function RecipePage() {
   const router = useRouter(); // router hook
   const id = parseInt(router.query.id as string, 10); // get recipe id from router query param
   const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -37,9 +40,33 @@ export default function RecipePage() {
 
     // call the function
     if (id) {
+      setSaved(getRecipeSaved(id));
       fetchRecipe().catch(console.error);
     }
   }, [id]);
+
+  const saveRecipe = () => {
+    if (localStorage.getItem("savedRecipes") == null) {
+      const savedRecipes = new Set();
+      savedRecipes.add(id);
+      const savedRecipesArr = Array.from(savedRecipes);
+      localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArr));
+    } else {
+      let savedRecipesArr = JSON.parse(localStorage.getItem("savedRecipes"));
+      const savedRecipes = new Set(savedRecipesArr);
+
+      if (savedRecipes.has(id)) {
+        savedRecipes.delete(id);
+      } else {
+        savedRecipes.add(id);
+      }
+
+      savedRecipesArr = Array.from(savedRecipes);
+      localStorage.setItem("savedRecipes", JSON.stringify(savedRecipesArr));
+    }
+
+    setSaved(!saved);
+  };
 
   return (
     <div>
@@ -105,7 +132,7 @@ export default function RecipePage() {
                 <h2 className="text-2xl font-bold">Ingredients:</h2>
                 <ol className="list-decimal ml-4">
                   {recipe?.ingredients &&
-                    Object.keys(recipe.ingredients).map(
+                    Object.keys(recipe.ingredients)?.map(
                       (ingredient, quantity) => (
                         <li key={ingredient}>
                           {ingredient}: {quantity}
@@ -117,7 +144,7 @@ export default function RecipePage() {
               <div className="flex flex-col space-y-3">
                 <h2 className="text-2xl font-bold">Appliances:</h2>
                 <ol className="list-decimal ml-4">
-                  {recipe?.appliances.map((appliance) => (
+                  {recipe?.appliances?.map((appliance) => (
                     <li key={appliance}>{appliance}</li>
                   ))}
                 </ol>
@@ -125,7 +152,7 @@ export default function RecipePage() {
             </div>
           </div>
           <Carousel>
-            {recipe?.instructions.map((instruction, index) => (
+            {recipe?.instructions?.map((instruction, index) => (
               <CarouselItem key={index}>
                 <div className="flex flex-col w-full select-none">
                   <h1 className="text-xl font-semibold mx-auto">
@@ -141,16 +168,23 @@ export default function RecipePage() {
         </div>
       </div>
       <div className="flex justify-center space-x-10 mt-5">
-        <Link
+        <button
           className="pl-2 py-2 pr-3 bg-gray-300 hover:bg-gray-400 active:bg-gray-500 rounded-lg text-gray-800 flex items-center space-x-2 border border-gray-400 select-none"
-          href="/recipes"
+          onClick={() => router.back()}
         >
           <ChevronLeftIcon className="h-5" />
           <p className="text-lg">Back</p>
-        </Link>
-        <button className="pl-2 py-2 pr-3 bg-green-300 hover:bg-green-400 active:bg-green-500 rounded-lg text-gray-800 flex items-center space-x-2 border border-green-400 select-none">
-          <p className="text-lg">Save Recipe</p>
-          <HeartIcon className="h-5" />
+        </button>
+        <button
+          className="pl-2 py-2 pr-3 bg-green-300 hover:bg-green-400 active:bg-green-500 rounded-lg text-gray-800 flex items-center space-x-2 border border-green-400 select-none"
+          onClick={saveRecipe}
+        >
+          <p className="text-lg">{!saved ? "Save Recipe" : "Unsave Recipe"}</p>
+          {!saved ? (
+            <HeartIcon className="h-5" />
+          ) : (
+            <FilledHeartIcon className="h-5" />
+          )}
         </button>
       </div>
     </div>
