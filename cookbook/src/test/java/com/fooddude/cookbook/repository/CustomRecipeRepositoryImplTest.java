@@ -208,26 +208,53 @@ class CustomRecipeRepositoryImplTest {
 
     @Test
     void filteredSearchDifficultyRatingMismatchTest(){
-        allRecipes.clear();
 
-        allRecipes.add(recipeFull);
         String msg = "Test filteredSearch - Test case filter and recipe don't match, different Difficulty Rating";
-        filter.setDifficultyRating(10.0);
-        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+
+        List<Recipe> recipes = new ArrayList<>();
+        Recipe recipe = new Recipe();
+        recipe.setDifficultyRating(5.0);
+        recipes.add(recipe);
+
+        Filter filter = new Filter();
+        filter.setDifficultyRating(1.0);
+        int actual = recipeRepository.filteredSearch(filter, recipes).size();
 
         assertEquals(0, actual, msg);
+
+        filter.setDifficultyRating(5.0);
+        actual = recipeRepository.filteredSearch(filter, recipes).size();
+        assertEquals(1, actual, msg);
+
+        filter.setDifficultyRating(10.0);
+        actual = recipeRepository.filteredSearch(filter, recipes).size();
+        assertEquals(1, actual, msg);
+
+
 
     }
 
     @Test
     void filteredSearchQualityRatingMismatchTest(){
-        allRecipes.clear();
 
-        allRecipes.add(recipeFull);
         String msg = "Test filteredSearch - Test case filter and recipe don't match, different Quality Rating";
-        filter.setQualityRating(9.0);
-        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
+        List<Recipe> recipes = new ArrayList<>();
+        Recipe recipe = new Recipe();
+        recipe.setQualityRating(5.0);
+        recipes.add(recipe);
 
+        Filter filter = new Filter();
+        filter.setQualityRating(1.0);
+        int actual = recipeRepository.filteredSearch(filter, recipes).size();
+
+        assertEquals(1, actual, msg);
+
+        filter.setQualityRating(5.0);
+        actual = recipeRepository.filteredSearch(filter, recipes).size();
+        assertEquals(1, actual, msg);
+
+        filter.setQualityRating(10.0);
+        actual = recipeRepository.filteredSearch(filter, recipes).size();
         assertEquals(0, actual, msg);
     }
 

@@ -100,8 +100,9 @@ class RecipeServiceImplTest {
 
         String msg = "Testing get all recipes";
         int expected = 100;
-        int actual = (recipeService.getAllRecipes()).size();
 
+        int actual = (recipeService.getAllRecipes()).size();
+        
         assertEquals(expected, actual, msg);
 
     }
