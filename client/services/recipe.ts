@@ -42,10 +42,9 @@ export const getFiltered = async (filterParams: {
   appliances: string[];
   difficultyRating: number | null;
   qualityRating: number | null;
-  cusine: string;
+  cuisine: string;
   flavor: string;
 }) => {
-  console.log(filterParams);
   const config = {
     method: "post",
     url: "/recipe/getFiltered",

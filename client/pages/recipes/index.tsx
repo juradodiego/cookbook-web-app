@@ -36,7 +36,6 @@ export default function Home() {
     cuisine: string,
     flavor: string
   ) => {
-    console.log(difficultyDropdownText);
     setRecipes(
       await getFiltered({
         ingredients: ingredients,
@@ -49,7 +48,7 @@ export default function Home() {
           qualityDropdownText != "Quality Rating"
             ? parseInt(qualityDropdownText.slice(-1), 10)
             : 0,
-        cusine: cuisine,
+        cuisine: cuisine,
         flavor: flavor,
       })
     );
