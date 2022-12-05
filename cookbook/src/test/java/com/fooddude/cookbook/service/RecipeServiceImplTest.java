@@ -100,8 +100,9 @@ class RecipeServiceImplTest {
 
         String msg = "Testing get all recipes";
         int expected = 100;
-        int actual = (recipeService.getAllRecipes()).size();
 
+        int actual = (recipeService.getAllRecipes()).size();
+        
         assertEquals(expected, actual, msg);
 
     }
@@ -180,7 +181,7 @@ class RecipeServiceImplTest {
     }
 
     @Test
-    void getRecipesByIds() {
+    void getRecipesByIdsTest() {
 
         Recipe recipe1 = new Recipe();
         recipe1 = recipeRepository.save(recipe1);
@@ -206,7 +207,7 @@ class RecipeServiceImplTest {
 
     @Test
     @Transactional
-    void addRecipe() {
+    void addRecipeTest() {
         recipeRepository.deleteAll();
         Recipe recipe1 = new Recipe();
         recipe1 = recipeService.addRecipe(recipe1);
@@ -239,7 +240,7 @@ class RecipeServiceImplTest {
     }
 
     @Test
-    void deleteRecipeTestExceptionThrownTest() throws InvalidRecipeIdException{
+    void deleteRecipeExceptionThrownTest() throws InvalidRecipeIdException{
         String msg = "Testing when InvalidRecipeIdException is thrown";
         assertThrows(InvalidRecipeIdException.class, new Executable() {
             @Override
