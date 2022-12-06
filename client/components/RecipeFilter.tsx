@@ -2,10 +2,12 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
   MagnifyingGlassIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Dispatch, SetStateAction, useState } from "react";
+import { getAll } from "../services/recipe";
 
-export default function RecipeFilter({ filterHandler }: any) {
+export default function RecipeFilter({ filterHandler, setRecipes }: any) {
   const [ingredients, setIngredients] = useState("");
   const [appliances, setAppliances] = useState("");
   const [cuisine, setCuisine] = useState("");
@@ -19,6 +21,17 @@ export default function RecipeFilter({ filterHandler }: any) {
     useState(false);
   const [difficultyDropdownText, setDifficultyDropdownText] =
     useState("Difficulty Rating");
+
+  const clearFilter = async () => {
+    setIngredients("");
+    setAppliances("");
+    setCuisine("");
+    setFlavor("");
+    setQualityDropdownText("Quality Rating");
+    setDifficultyDropdownText("Difficulty Rating");
+
+    setRecipes(await getAll());
+  };
 
   const dropdownChangeHandler = (
     target: EventTarget,
@@ -201,25 +214,34 @@ export default function RecipeFilter({ filterHandler }: any) {
           onChange={(e) => setFlavor(e.target.value)}
         />
       </div>
-      <div
-        className="h-10 w-30 rounded-full cursor-pointer ml-auto mt-4 items-center justify-center hover:bg-gray-300 flex active:bg-gray-400 px-2 select-none"
-        onClick={() =>
-          filterHandler(
-            ingredients != ""
-              ? ingredients.split(",").map((ingredient) => ingredient.trim())
-              : null,
-            appliances != ""
-              ? appliances.split(",").map((appliance) => appliance.trim())
-              : null,
-            difficultyDropdownText,
-            qualityDropdownText,
-            cuisine != "" ? cuisine : null,
-            flavor != "" ? flavor : null
-          )
-        }
-      >
-        <p className="mr-1">Filter Recipes</p>
-        <ChevronRightIcon className="h-5" />
+      <div className="flex">
+        <div
+          className="h-10 w-30 rounded-full cursor-pointer mr-auto mt-4 items-center justify-center hover:bg-gray-300 flex active:bg-gray-400 px-2 select-none"
+          onClick={clearFilter}
+        >
+          <XMarkIcon className="h-5" />
+          <p className="ml-1 mr-1">Clear Filter</p>
+        </div>
+        <div
+          className="h-10 w-30 rounded-full cursor-pointer ml-auto mt-4 items-center justify-center hover:bg-gray-300 flex active:bg-gray-400 px-2 select-none"
+          onClick={() =>
+            filterHandler(
+              ingredients != ""
+                ? ingredients.split(",").map((ingredient) => ingredient.trim())
+                : null,
+              appliances != ""
+                ? appliances.split(",").map((appliance) => appliance.trim())
+                : null,
+              difficultyDropdownText,
+              qualityDropdownText,
+              cuisine != "" ? cuisine : null,
+              flavor != "" ? flavor : null
+            )
+          }
+        >
+          <p className="mr-1">Filter Recipes</p>
+          <ChevronRightIcon className="h-5" />
+        </div>
       </div>
     </div>
   );
