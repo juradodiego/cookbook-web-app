@@ -62,7 +62,7 @@ export default function Home() {
       <NavBar />
       {/* Search Bar */}
       <div className="flex mt-5 ml-5">
-        <RecipeFilter filterHandler={filterRecipes} />
+        <RecipeFilter filterHandler={filterRecipes} setRecipes={setRecipes} />
         {/* Individual recipe widgets */}
         <div className="flex mx-5 mt-2 flex-wrap">
           {recipes?.map((recipe, index) => (
