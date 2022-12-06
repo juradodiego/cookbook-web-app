@@ -20,7 +20,6 @@ interface Recipe {
   qualityRating: number;
   difficultyRating: number;
   estCookTime: number;
-  estPrepTime: number;
   cusisine: string;
   flavor: string;
   imageUrl: string;
@@ -115,16 +114,8 @@ export default function RecipePage() {
           <div className="flex flex-col space-y-5">
             <div className="w-96 h-40 bg-white rounded-md grid grid-cols-2 px-5 py-2 border border-gray-200 select-none">
               <span>
-                <p className="font-bold">Prep Time:</p>
-                {recipe?.estPrepTime} mins
-              </span>
-              <span>
-                <p className="font-bold">Cook Time:</p>
-                {recipe?.estCookTime} mins
-              </span>
-              <span>
-                <p className="font-bold">Total Time:</p>
-                {recipe && recipe.estCookTime + recipe.estPrepTime} mins
+                <p className="text-2xl font-bold">Cook Time:</p>
+                <p className="text-xl">{recipe?.estCookTime} mins</p>
               </span>
             </div>
             <div className="flex space-x-10 bg-white rounded-md border border-gray-200 px-5 py-4 select-none">
