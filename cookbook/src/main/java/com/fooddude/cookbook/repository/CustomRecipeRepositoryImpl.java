@@ -42,29 +42,32 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository {
 
 		for (Recipe recipe : allRecipes) {
 
-			if (filterCuisine != null && !filterCuisine.equals(recipe.getCuisine().toLowerCase()))
+			if (filterCuisine != null && recipe.getCuisine() != null && !filterCuisine.equals(recipe.getCuisine().toLowerCase()))
 				continue;
-			if (filterFlavor != null && !filterFlavor.equals(recipe.getFlavor().toLowerCase()))
+			if (filterFlavor != null && recipe.getFlavor() != null && !filterFlavor.equals(recipe.getFlavor().toLowerCase()))
 				continue;
 			if (filterDiffRating != 0 && !(filterDiffRating >= recipe.getDifficultyRating()))
 				continue;
 			if (filterQualRating != 0 && !(filterQualRating <= recipe.getQualityRating()))
 				continue;
-			if (filterAppliances != null && !filterAppliances.containsAll(recipe.getAppliances().stream().map(String ::toLowerCase).collect(Collectors.toList())))
+			if (filterAppliances != null && recipe.getAppliances() != null && !filterAppliances.containsAll(recipe.getAppliances().stream().map(String ::toLowerCase).collect(Collectors.toList())))
 				continue;
-			if (filterDiets != null && !recipe.getDiets().stream().map(String ::toLowerCase).collect(Collectors.toList()).containsAll(filterDiets))
+			if (filterDiets != null && recipe.getDiets() != null && !recipe.getDiets().stream().map(String ::toLowerCase).collect(Collectors.toList()).containsAll(filterDiets))
 				continue;
 
-			if (filterIngredients != null) {
-				List<String> ingredients = new ArrayList<String>();
-				if (recipe.getIngredients() != null) {
-					ingredients.addAll(recipe.getIngredients().keySet().stream().map(String ::toLowerCase).collect(Collectors.toList()));
-					if (!ingredients.containsAll(filterIngredients))
-						continue;
-				} else {
-					continue;
+			if (filterIngredients != null){
+				List<String> recipeIngredients = recipe.getIngredients() != null ? recipe.getIngredients().keySet().stream().map(String ::toLowerCase).collect(Collectors.toList()) : (List<String>) recipe.getIngredients();
+				for (String recipeIngredient : recipeIngredients){
+					if (filterIngredients.contains(recipeIngredient)) {
+						filteredRecipes.add(recipe);
+						break;
+					}
+
+
 				}
+				continue;
 			}
+
 
 			filteredRecipes.add(recipe);
 

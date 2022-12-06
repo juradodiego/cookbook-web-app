@@ -186,9 +186,18 @@ class CustomRecipeRepositoryImplTest {
     void filteredSearchCuisineMismatchTest(){
         String msg = "Test filteredSearch - Test case Filter and recipe don't match, different Cuisine";
         filter.setCuisine("German");
+
+        Recipe r = new Recipe();
+        r.setCuisine("Italian");
+        allRecipes.add(r);
+        System.out.println(filter.getCuisine());
+        for (Recipe recipe: allRecipes)
+            System.out.println(recipe.getCuisine());
         int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
 
         assertEquals(0, actual, msg);
+
+
     }
     @Test
     void filteredSearchFlavorMismatchTest(){
@@ -284,8 +293,14 @@ class CustomRecipeRepositoryImplTest {
         List<String> wrongDiets = new ArrayList<>();
         wrongDiets.add("Very Unhealthy");
         filter.setDiets(wrongDiets);
-        int actual = recipeRepository.filteredSearch(filter, allRecipes).size();
 
+        Filter f = new Filter();
+        f.setDiets(wrongDiets);
+        int actual = recipeRepository.filteredSearch(f, allRecipes).size();
+        for (Recipe recipe: recipeRepository.filteredSearch(f, allRecipes))
+            System.out.println(recipe.getDiets().toString());
+        for (Recipe recipe : allRecipes)
+            System.out.println(recipe.getDiets().toString());
         assertEquals(0, actual, msg);
 
     }

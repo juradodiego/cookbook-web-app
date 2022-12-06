@@ -131,6 +131,8 @@ class RecipeServiceImplTest {
         recipe.setQualityRating(3.0);
         recipe.setDifficultyRating(2.0);
 
+        recipeRepository.deleteAll();
+
         recipe = recipeRepository.save(recipe);
 
        Filter filter = new Filter();
@@ -160,6 +162,8 @@ class RecipeServiceImplTest {
         filterIngredients.add("Pasta");
         appliances.add("Stove");
         diets.add("Diet");
+
+        recipeRepository.deleteAll();
 
         Filter filter = new Filter();
         filter.setAppliances(appliances);
