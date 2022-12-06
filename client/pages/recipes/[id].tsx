@@ -143,11 +143,11 @@ export default function RecipePage() {
           <Carousel>
             {recipe?.instructions?.map((instruction, index) => (
               <CarouselItem key={index}>
-                <div className="flex flex-col w-full select-none">
+                <div className="flex flex-col w-full select-none whitespace-normal">
                   <h1 className="text-xl font-semibold mx-auto">
                     Instructions:
                   </h1>
-                  <p className="text-lg my-auto">
+                  <p className="text-lg my-auto ">
                     {index + 1}. {instruction}
                   </p>
                 </div>
