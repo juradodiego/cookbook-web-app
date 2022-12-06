@@ -5,6 +5,7 @@ import com.fooddude.cookbook.model.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomRecipeRepositoryImpl implements CustomRecipeRepository {
 	@Override
@@ -29,33 +30,35 @@ public class CustomRecipeRepositoryImpl implements CustomRecipeRepository {
 	public List<Recipe> filteredSearch(Filter filter, List<Recipe> allRecipes) {
 		List<Recipe> filteredRecipes = new ArrayList<>();
 
-		String filterCuisine = filter.getCuisine();
-		String filterFlavor = filter.getFlavor();
+		String filterCuisine = filter.getCuisine() != null ? filter.getCuisine().toLowerCase() : filter.getCuisine();
+		String filterFlavor = filter.getFlavor() != null ? filter.getFlavor().toLowerCase() : filter.getFlavor();
+
 		double filterDiffRating = filter.getDifficultyRating();
 		double filterQualRating = filter.getQualityRating();
-		List<String> filterAppliances = filter.getAppliances();
-		List<String> filterDiets = filter.getDiets();
-		List<String> filterIngredients = filter.getIngredients();
+
+		List<String> filterAppliances = filter.getAppliances() != null ? filter.getAppliances().stream().map(String ::toLowerCase).collect(Collectors.toList()) : filter.getAppliances();
+		List<String> filterDiets = filter.getDiets() != null ? filter.getDiets().stream().map(String ::toLowerCase).collect(Collectors.toList()) : filter.getDiets();
+		List<String> filterIngredients = filter.getIngredients() != null ? filter.getIngredients().stream().map(String ::toLowerCase).collect(Collectors.toList()) : filter.getIngredients();
 
 		for (Recipe recipe : allRecipes) {
 
-			if (filterCuisine != null && !filterCuisine.equals(recipe.getCuisine()))
+			if (filterCuisine != null && !filterCuisine.equals(recipe.getCuisine().toLowerCase()))
 				continue;
-			if (filterFlavor != null && !filterFlavor.equals(recipe.getFlavor()))
+			if (filterFlavor != null && !filterFlavor.equals(recipe.getFlavor().toLowerCase()))
 				continue;
 			if (filterDiffRating != 0 && !(filterDiffRating >= recipe.getDifficultyRating()))
 				continue;
 			if (filterQualRating != 0 && !(filterQualRating <= recipe.getQualityRating()))
 				continue;
-			if (filterAppliances != null && !filterAppliances.containsAll(recipe.getAppliances()))
+			if (filterAppliances != null && !filterAppliances.containsAll(recipe.getAppliances().stream().map(String ::toLowerCase).collect(Collectors.toList())))
 				continue;
-			if (filterDiets != null && !recipe.getDiets().containsAll(filterDiets))
+			if (filterDiets != null && !recipe.getDiets().stream().map(String ::toLowerCase).collect(Collectors.toList()).containsAll(filterDiets))
 				continue;
 
 			if (filterIngredients != null) {
 				List<String> ingredients = new ArrayList<String>();
 				if (recipe.getIngredients() != null) {
-					ingredients.addAll(recipe.getIngredients().keySet());
+					ingredients.addAll(recipe.getIngredients().keySet().stream().map(String ::toLowerCase).collect(Collectors.toList()));
 					if (!ingredients.containsAll(filterIngredients))
 						continue;
 				} else {
