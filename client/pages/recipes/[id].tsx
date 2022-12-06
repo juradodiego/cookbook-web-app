@@ -16,7 +16,7 @@ interface Recipe {
   description: string;
   instructions: string[];
   appliances: string[];
-  ingredients: Object;
+  ingredients: { ingredient: string; quantity: string };
   qualityRating: number;
   difficultyRating: number;
   estCookTime: number;
@@ -123,13 +123,11 @@ export default function RecipePage() {
                 <h2 className="text-2xl font-bold">Ingredients:</h2>
                 <ol className="list-decimal ml-4">
                   {recipe?.ingredients &&
-                    Object.keys(recipe.ingredients)?.map(
-                      (ingredient, quantity) => (
-                        <li key={ingredient}>
-                          {ingredient}: {quantity}
-                        </li>
-                      )
-                    )}
+                    Object.keys(recipe.ingredients)?.map((ingredient, i) => (
+                      <li key={i}>
+                        {ingredient}: {recipe?.ingredients[ingredient]},
+                      </li>
+                    ))}
                 </ol>
               </div>
               <div className="flex flex-col space-y-3">
