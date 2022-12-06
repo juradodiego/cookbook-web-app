@@ -125,7 +125,7 @@ export default function RecipePage() {
                   {recipe?.ingredients &&
                     Object.keys(recipe.ingredients)?.map((ingredient, i) => (
                       <li key={i}>
-                        {ingredient}: {recipe?.ingredients[ingredient]},
+                        {ingredient}: {recipe?.ingredients[ingredient]}
                       </li>
                     ))}
                 </ol>
